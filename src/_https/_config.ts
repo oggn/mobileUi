@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { HTTPS_API } from '@/config/env_key';
+import { HTTPS_API } from '../_https/index';
 
 //
 /// baseUrl

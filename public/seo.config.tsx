@@ -1,5 +1,5 @@
+import { SITE_URL } from '@/_https';
 import { NextSeo, NextSeoProps } from 'next-seo';
-import { SITE_URL } from './config/env_key';
 
 interface SEOProps extends NextSeoProps {
   title?: string;
