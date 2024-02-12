@@ -1,4 +1,3 @@
-import { SITE_URL } from '@/_https';
 import { NextSeo, NextSeoProps } from 'next-seo';
 
 interface SEOProps extends NextSeoProps {
@@ -8,6 +7,7 @@ interface SEOProps extends NextSeoProps {
 }
 
 function SEO({ title, description, image }: SEOProps) {
+  const site_url = '';
   const site_name = '템플릿';
   const seo_title = title
     ? `${title} | Next.js 템플릿에 오신 것을 환영합니다`
@@ -21,11 +21,11 @@ function SEO({ title, description, image }: SEOProps) {
     <NextSeo
       title={seo_title} // 영문 65자 / 한글 32자
       description={seo_description} // 영문 160 / 한글 77자
-      canonical={SITE_URL}
+      canonical={site_url}
       openGraph={{
         type: 'website',
         locale: 'ko_KR',
-        url: SITE_URL,
+        url: site_url,
         title: seo_title,
         description: seo_description,
         site_name: site_name,
@@ -39,7 +39,7 @@ function SEO({ title, description, image }: SEOProps) {
       twitter={{
         cardType: 'summary_large_image', //4096x4096 이하 2:1
         handle: `@${site_name}`,
-        site: SITE_URL,
+        site: site_url,
       }}
     />
   );
