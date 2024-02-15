@@ -10,11 +10,11 @@ interface Props extends HTMLAttributes<HTMLElement> {
   theme?: 'light' | 'dark';
   open: boolean;
   onCancel: () => void;
-  dialogSizes?: number;
+  modalSize?: number;
 }
 
 export function Modal(props: Props) {
-  const { theme = 'light', dialogSizes = 560, open, onCancel } = props;
+  const { theme = 'light', modalSize = 560, open, onCancel } = props;
   const ref = useRef<HTMLDivElement>(null);
 
   const THEME_VARIANT = {
@@ -44,7 +44,7 @@ export function Modal(props: Props) {
 
       <div css={{ ...Themes.wrap, top: open ? 0 : '150%', transition: '0.25s ease-in-out' }}>
         <Container
-          maxWidth={dialogSizes}
+          maxWidth={modalSize}
           minWidth={320}
           padding={{ horizontal: 18, top: 26, bottom: 16 }}
           borderRadius={20}
