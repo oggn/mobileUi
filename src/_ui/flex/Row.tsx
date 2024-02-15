@@ -24,7 +24,7 @@ interface Props
 }
 
 export const Row = forwardRef<HTMLDivElement, Props>((props, ref: ForwardedRef<HTMLDivElement>) => {
-  const { width = '100%', minWidth, maxWidth } = props;
+  const { zIndex, width = '100%', minWidth, maxWidth } = props;
   const { height, minHeight, maxHeight } = props;
   const { flex, direction = 'horizontal', align = 'stretch', crossAlign } = props;
   const { wrap, gap, crossGap } = props;
@@ -52,6 +52,7 @@ export const Row = forwardRef<HTMLDivElement, Props>((props, ref: ForwardedRef<H
         ...borderT,
         ...shadowT,
         ...cursorT,
+        zIndex,
         position: 'relative',
         backgroundColor,
         borderRadius,

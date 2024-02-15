@@ -25,7 +25,7 @@ interface Props
 
 export const Container = forwardRef<HTMLDivElement, Props>(
   (props, ref: ForwardedRef<HTMLDivElement>) => {
-    const { width = '100%', minWidth, maxWidth } = props;
+    const { zIndex, width = '100%', minWidth, maxWidth } = props;
     const { height, minHeight, maxHeight } = props;
     const { flex, direction = 'vertical', align, crossAlign } = props;
     const { wrap, gap, crossGap } = props;
@@ -56,6 +56,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(
           position: 'relative',
           backgroundColor,
           borderRadius,
+          zIndex,
           transition: `${transitionTime}s ease-in-out`,
         }}
         {...props}

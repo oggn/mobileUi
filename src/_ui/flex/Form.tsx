@@ -25,7 +25,7 @@ interface Props
 
 export const Form = forwardRef<HTMLFormElement, Props>(
   (props, ref: ForwardedRef<HTMLFormElement>) => {
-    const { width = '100%', minWidth, maxWidth } = props;
+    const { zIndex, width = '100%', minWidth, maxWidth } = props;
     const { height, minHeight, maxHeight } = props;
     const { flex, direction = 'vertical', align, crossAlign } = props;
     const { wrap, gap, crossGap } = props;
@@ -53,6 +53,7 @@ export const Form = forwardRef<HTMLFormElement, Props>(
           ...borderT,
           ...shadowT,
           ...cursorT,
+          zIndex,
           position: 'relative',
           backgroundColor,
           borderRadius,

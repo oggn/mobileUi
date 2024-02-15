@@ -11,7 +11,7 @@ interface Props extends HTMLAttributes<HTMLElement>, ViewportTypes, FlexType {
 }
 
 export const Section = forwardRef<HTMLElement, Props>((props, ref: ForwardedRef<HTMLElement>) => {
-  const { width = '100%', minWidth, maxWidth } = props;
+  const { zIndex, width = '100%', minWidth, maxWidth } = props;
   const { height, minHeight, maxHeight } = props;
   const { flex, direction = 'vertical', align = 'center', crossAlign } = props;
   const { wrap, gap, crossGap } = props;
@@ -38,6 +38,7 @@ export const Section = forwardRef<HTMLElement, Props>((props, ref: ForwardedRef<
       css={[
         {
           ...FlexThemes,
+          zIndex,
           width,
           height,
           minWidth,
