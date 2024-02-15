@@ -52,6 +52,9 @@ export const AppBar = forwardRef(
             top: 0,
             left: 0,
             right: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             paddingTop: 'env(safe-area-inset-top)',
             paddingRight: 'env(safe-area-inset-right)',
             paddingLeft: 'env(safe-area-inset-left)',
@@ -64,6 +67,7 @@ export const AppBar = forwardRef(
           <nav
             css={{
               width: '100%',
+              maxWidth: width,
               height: '100%',
               display: 'flex',
               alignItems: 'center',
