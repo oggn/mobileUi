@@ -129,6 +129,7 @@ V2 버전으로 업데이트 되었으며, 모든 위젯이 업데이트 및 최
 
 - LoaddingSpinner : 로딩스피너
 - LoadingLayer : 로딩 레이어
+- Skeleton : 스켈레톤 로딩
 
 **tab**
 

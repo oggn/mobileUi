@@ -49,6 +49,7 @@ import { TxtSpan } from './typography/TxtSpan';
 //loading
 import { LoadingSpinner } from './loading/LoadingSpinner';
 import { LoadingLayer } from './loading/LoadingLayer';
+import { Skeleton } from './loading/Skeleton';
 
 //image
 import { Image } from './image/Image';
@@ -57,7 +58,6 @@ import { Image } from './image/Image';
 import { Dialog } from './modal/Dialog';
 import { Modal } from './modal/Modal';
 import { BottomSheet } from './modal/BottomSheet';
-import { CalenderModal } from './modal/CalenderModal';
 
 export {
   AppBar,
@@ -77,7 +77,6 @@ export {
   Absolute,
   Fixed,
   BottomFixed,
-  CalenderModal,
   IconTab,
   Button,
   TxtTab,
@@ -91,6 +90,7 @@ export {
   Checkbox,
   LoadingSpinner,
   LoadingLayer,
+  Skeleton,
   Dialog,
   Modal,
   BottomSheet,
