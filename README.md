@@ -66,6 +66,7 @@ V2 버전으로 업데이트 되었으며, 모든 위젯이 업데이트 및 최
 
 - Appbar : 헤더의 앱바
 - Drawer : 메뉴 드로어
+- DrawerAccordion : 아코디언 메뉴 드로어
 - BottomNavigationBar : 바텀네비게이션 바/버튼 기능
 
 **display**

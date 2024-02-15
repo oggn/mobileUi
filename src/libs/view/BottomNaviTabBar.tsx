@@ -3,7 +3,7 @@ import { NextRouter, useRouter } from 'next/router';
 import { colors } from '@/libs/themes/colors';
 
 import { CopyIcon, HomeIcon, MessageIcon, ProfileIcon, SettingIcon } from '@/libs/assets/icons';
-import { BottomTabNavigator } from '@/_ui/navigation/BottomNavigationBar';
+import { BottomTabNavigator } from '@/_ui';
 
 export default function BottomNaviTabBar() {
   const router: NextRouter = useRouter();

@@ -1,6 +1,8 @@
 //navigation
 import { AppBar } from './navigation/AppBar';
 import { Drawer } from './navigation/Drawer';
+import { DrawerAccordion } from './navigation/DrawerAccordion';
+import { BottomTabNavigator } from './navigation/BottomNavigationBar';
 
 //display
 import { BlurLayer } from './display/BlurLayer';
@@ -62,6 +64,8 @@ import { BottomSheet } from './modal/BottomSheet';
 export {
   AppBar,
   Drawer,
+  DrawerAccordion,
+  BottomTabNavigator,
   Spacing,
   Divider,
   BlurLayer,
