@@ -60,6 +60,7 @@ import { Image } from './image/Image';
 import { Dialog } from './modal/Dialog';
 import { Modal } from './modal/Modal';
 import { BottomSheet } from './modal/BottomSheet';
+import { CalenderModal } from './modal/CalenderModal';
 
 export {
   AppBar,
@@ -98,6 +99,7 @@ export {
   Dialog,
   Modal,
   BottomSheet,
+  CalenderModal,
   Image,
   TouchableOpacity,
 };

@@ -46,7 +46,7 @@ export default function CheckBoxs({
     >
       {/* ----- 이용약관 ----- */}
       <Checkbox
-        id="1"
+        id="이용약관"
         checked={isValues.check1}
         onChange={() => handleCheckOnChange('check1')}
         label={{
@@ -60,7 +60,7 @@ export default function CheckBoxs({
 
       {/* ----- 개인정보 처리방침 ----- */}
       <Checkbox
-        id="2"
+        id="개인정보 처리방침"
         checked={isValues.check2}
         onChange={() => handleCheckOnChange('check2')}
         label={{

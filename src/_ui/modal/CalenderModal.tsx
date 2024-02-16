@@ -1,9 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import React, { HTMLAttributes, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import React, { HTMLAttributes, useCallback, useEffect, useRef } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import styled, { Interpolation } from '@emotion/styled';
-import { Theme } from '@emotion/react';
+import styled from '@emotion/styled';
 
 import { colors, MQ } from '@/libs/themes';
 import { BlurLayer, Column, Container, Fixed } from '../index';
