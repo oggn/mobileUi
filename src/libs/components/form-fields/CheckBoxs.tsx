@@ -34,8 +34,6 @@ export default function CheckBoxs({
       { scroll: false },
     );
 
-  console.log(isValues);
-
   return (
     <Container
       padding={{ horizontal: 12, vertical: 16 }}
