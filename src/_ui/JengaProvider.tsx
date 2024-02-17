@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { ReactNode, createContext, useContext, useEffect, useState } from 'react';
-import ToastSnackBar from './feedback/ToastSnackBar';
+import { ToastSnackBar } from './feedback/ToastSnackBar';
 
 interface ToastProps {
   theme?: 'light' | 'dark';

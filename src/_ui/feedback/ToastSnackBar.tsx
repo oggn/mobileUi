@@ -2,7 +2,7 @@
 import { keyframes } from '@emotion/react';
 import { Txt } from '../typography/Txt';
 
-export default function ToastSnackBar({
+export function ToastSnackBar({
   theme = 'light',
   status = 'success',
   id,
