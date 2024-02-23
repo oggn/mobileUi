@@ -7,6 +7,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   gap?: number;
   backgroundColor?: string;
   borderRadius?: string | number;
+  scrollBarActive?: boolean;
 }
 
 export const ScrollDragHorizontal = ({
@@ -15,6 +16,7 @@ export const ScrollDragHorizontal = ({
   gap,
   backgroundColor,
   borderRadius,
+  scrollBarActive = false,
   ...props
 }: Props) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
@@ -61,7 +63,7 @@ export const ScrollDragHorizontal = ({
         borderRadius: borderRadius,
 
         '&::-webkit-scrollbar': {
-          display: 'none',
+          display: scrollBarActive ? 'flex' : 'none',
         },
       }}
       {...props}

@@ -12,7 +12,7 @@ interface CheckProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>
   size?: number;
   type?: 'checkbox' | 'radio';
   theme?: 'light' | 'dark';
-  label: {
+  label?: {
     title: string;
     titleColor?: string;
     titleSize?: number;
@@ -125,7 +125,7 @@ export const Checkbox = forwardRef(function Checkbox(
           <Txt
             size={label.txtSize ?? 12}
             color={label.txtColor ?? VARIANTS[theme].labelTxtColor}
-            onClick={props.label.txtOnClick}
+            onClick={label.txtOnClick}
           >
             {label.txt}
           </Txt>

@@ -32,22 +32,22 @@ V2 버전으로 업데이트 되었으며, 모든 위젯이 업데이트 및 최
 
 현재 패키지에 설치 및 적용된 **NPM 패키지 라이브러리 / 버전 정보** 입니다.
 
-- next : 14.1.0
-- typeScript : 5.3.3
-- next-pwa : 5.6.9
-- next-seo : 6.4.0
-- next-sitemap: 4.2.3
-- next-auth : 4.24.5
-- axios : 1.6.7
-- tanstack/react-query : 5.20.1
-- recoil: 0.7.7
-- emotion : 11.11.2
-- sharp: 0.33.2
-- plaiceholder: 3.0.0
-- react-cookie : 7.0.2
-- react-calender : 4.8.0
-- react-image-cached-resizer : 1.2.0 (자체 배포/개발 패키지)
-- react-flatlist-ui : 1.4.0 (자체 배포/개발 패키지)
+-   next : 14.1.0
+-   typeScript : 5.3.3
+-   next-pwa : 5.6.9
+-   next-seo : 6.4.0
+-   next-sitemap: 4.2.3
+-   next-auth : 4.24.5
+-   axios : 1.6.7
+-   tanstack/react-query : 5.20.1
+-   recoil: 0.7.7
+-   emotion : 11.11.2
+-   sharp: 0.33.2
+-   plaiceholder: 3.0.0
+-   react-cookie : 7.0.2
+-   react-calender : 4.8.0
+-   react-image-cached-resizer : 1.2.0 (자체 배포/개발 패키지)
+-   react-flatlist-ui : 1.4.0 (자체 배포/개발 패키지)
 
 ---
 
@@ -64,92 +64,92 @@ V2 버전으로 업데이트 되었으며, 모든 위젯이 업데이트 및 최
 
 **navigation**
 
-- Appbar : 헤더의 앱바
-- Drawer : 메뉴 드로어
-- DrawerAccordion : 아코디언 메뉴 드로어
-- BottomNavigationBar : 바텀네비게이션 바/버튼 기능
+-   Appbar : 헤더의 앱바
+-   Drawer : 메뉴 드로어
+-   DrawerAccordion : 아코디언 메뉴 드로어
+-   BottomNavigationBar : 바텀네비게이션 바/버튼 기능
 
 **display**
 
-- BlurLayer : 배경 블러 레이어 (팝업 시 사용)
-- Divider : 경계 선을 처리해야할 때 사용합니다
-- Spacing : 여백을 설정할 수 있습니다
+-   BlurLayer : 배경 블러 레이어 (팝업 시 사용)
+-   Divider : 경계 선을 처리해야할 때 사용합니다
+-   Spacing : 여백을 설정할 수 있습니다
 
 **feedback**
 
-- ToastSnackBar : JengaProvider를 통해 addToast를 사용할 수 있습니다
+-   ToastSnackBar : JengaProvider를 통해 addToast를 사용할 수 있습니다
 
 **flex**
 
-- Section : 섹션 레이아웃
-- Container : 상위 레이아웃
-- Row : 가로 정렬 레이아웃 위젯
-- Column : 세로 정렬 레이아웃 위젯
-- Form : form 위젯
+-   Section : 섹션 레이아웃
+-   Container : 상위 레이아웃
+-   Row : 가로 정렬 레이아웃 위젯
+-   Column : 세로 정렬 레이아웃 위젯
+-   Form : form 위젯
 
 **position**
 
-- Absolute
-- Fixed
-- Sticky
-- BottomFixed : 바텀 아래 영역 Fixed
+-   Absolute
+-   Fixed
+-   Sticky
+-   BottomFixed : 바텀 아래 영역 Fixed
 
 **items**
 
-- ScrollDragHorizontal : 가로 터치 스크롤을 통해 영역 외의 레이아웃을 처리할 수 있습니다
-- Itmes : ul 레이아웃
-- Item : li 레이아웃
+-   ScrollDragHorizontal : 가로 터치 스크롤을 통해 영역 외의 레이아웃을 처리할 수 있습니다
+-   Itmes : ul 레이아웃
+-   Item : li 레이아웃
 
 **image**
 
-- Image : 서버사이드렌더링 이미지 기능 사용 가능합니다
+-   Image : 서버사이드렌더링 이미지 기능 사용 가능합니다
 
 **input**
 
-- Input : input(label) + input(field) 각 기능
+-   Input : input(label) + input(field) 각 기능
 
-  - TextField(텍스트 필드)
-  - PhoneNumberField(연락처 필드 ex_010-1234-5678)
-  - NumbericField(통화화폐 단위 필드 ex_10,000)
-  - TextArea(에디터 필드)
+    -   TextField(텍스트 필드)
+    -   PhoneNumberField(연락처 필드 ex_010-1234-5678)
+    -   NumbericField(통화화폐 단위 필드 ex_10,000)
+    -   TextArea(에디터 필드)
 
-- Select : select(label) 기능
+-   Select : select(label) 기능
 
-  - Option : 옵션 기능
+    -   Option : 옵션 기능
 
 **switch**
 
-- Checkbox : 체크박스
+-   Checkbox : 체크박스
 
 **reader**
 
-- AvatarUploader : 아바타 이미지 업로더 기능
-- ImageUploader : 이미지 업로더 기능
+-   AvatarUploader : 아바타 이미지 업로더 기능
+-   ImageUploader : 이미지 업로더 기능
 
 **loading**
 
-- LoaddingSpinner : 로딩스피너
-- LoadingLayer : 로딩 레이어
-- Skeleton : 스켈레톤 로딩
+-   LoaddingSpinner : 로딩스피너
+-   LoadingLayer : 로딩 레이어
+-   Skeleton : 스켈레톤 로딩
 
 **tab**
 
-- Button : 타이틀 버튼 위젯
-- TxtTab : 텍스트 버튼 위젯
-- IconTab : 아이콘 탭을 커스텀 버튼 위젯
-- TouchableOpacity : react-native 에서 제공되는 prassable 기능의 탭
+-   Button : 타이틀 버튼 위젯
+-   TxtTab : 텍스트 버튼 위젯
+-   IconTab : 아이콘 탭을 커스텀 버튼 위젯
+-   TouchableOpacity : react-native 에서 제공되는 prassable 기능의 탭
 
 **typography**
 
-- Txt : h1/h2/h3/h4/h5/h6/b/strong/p 텍스트
-- TxtTab : span 텍스트
+-   Txt : h1/h2/h3/h4/h5/h6/b/strong/p 텍스트
+-   TxtTab : span 텍스트
 
 **Modal**
 
-- Modal : 기본 모달 팝업
-- Dialog : Dialog 타입의 모달 팝업
-- BottomSheet : BottomSheet 타입의 IOS 모달
-- CalenderModal : 달력 사용 가능 형태의 모달 위젯
+-   Modal : 기본 모달 팝업
+-   Dialog : Dialog 타입의 모달 팝업
+-   BottomSheet : BottomSheet 타입의 IOS 모달
+-   CalenderModal : 달력 사용 가능 형태의 모달 위젯
 
 ---
 
@@ -167,13 +167,9 @@ V2 버전으로 업데이트 되었으며, 모든 위젯이 업데이트 및 최
 
 프론트 개발에 도움이 되는 다양한 유틸 기능입니다.
 
-- cookie : react-cookie의 set / get / remove를 즉시 사용가능합니다. ex\_ setCookie('TOKEN.ACCESS', access_token)
+-   enum : enum을 미리 셋팅 후 가져와 사용할 수 있습니다.
 
-- enum : enum을 미리 셋팅 후 가져와 사용할 수 있습니다.
-
-- moment : 2024.01.01 / 2024-01-01 / 1일 전 처럼 날짜를 직관적으로 처리할 수 있습니다. ex_moment(new Date())
-
-- regEx : 이메일 및 비밀번호 정규식을 즉시 사용할 수 있습니다. ex\_ regEx.email.text(email)
+-   regEx : 이메일 및 비밀번호 정규식을 즉시 사용할 수 있습니다. ex\_ regEx.email.text(email)
 
 ---
 
@@ -183,11 +179,15 @@ V2 버전으로 업데이트 되었으며, 모든 위젯이 업데이트 및 최
 
 프론트 개발에 도움이 되는 커스텀 훅 입니다.
 
-- useClickOutSide : DOM 외부 요소를 클릭 시 처리되는 훅입니다\_ 모달 닫기 기능에 추천합니다.
+-   useCookie : set, get, remove를 사용하여 쿠키를 설정 및 읽을 수 있습니다.
 
-- useRouteOnload: 해당 페이지에서 나갈 때 저장된 recoil 상태를 초기화 할때 사용하는 훅입니다.
+-   useMoment : 날짜를 시각적으로 처리하는 훅입니다. (예\_ yyyy-mm-dd , yyyy.mm.dd, y전, 방금전 ...)
 
-- useIntersectionObserver : 무한 스크롤 기능을 사용할 때 사용되는 옵저버 훅입니다.
+-   useClickOutSide : DOM 외부 요소를 클릭 시 처리되는 훅입니다\_ 모달 닫기 기능에 추천합니다.
+
+-   useRouteOnload: 해당 페이지에서 나갈 때 저장된 recoil 상태를 초기화 할때 사용하는 훅입니다.
+
+-   useIntersectionObserver : 무한 스크롤 기능을 사용할 때 사용되는 옵저버 훅입니다.
 
 ---
 
