@@ -1,6 +1,6 @@
 //libs
-import { Container, Section, Spacing } from '@/_ui/index'
-import { MQ, screenSize } from '@/libs/themes'
+import { V, Spacing } from '@/_ui/index'
+import { screenSize } from '@/libs/themes'
 
 //components
 import SEO from '@/seo.config'
@@ -16,12 +16,8 @@ export default function Index() {
         <>
             <SEO />
 
-            <Section>
-                <Container
-                    maxWidth={screenSize[3]}
-                    padding={{ top: 40, bottom: 60, horizontal: 20 }}
-                    css={{ [MQ[3]]: { paddingTop: 10, paddingBottom: 40 } }}
-                >
+            <V.Section>
+                <V.Container maxWidth={screenSize[3]} padding={{ top: 20, bottom: 40, horizontal: 20 }}>
                     <Spacing size={16} />
                     <Comp1 />
                     <Spacing size={12} />
@@ -32,8 +28,8 @@ export default function Index() {
                     <Comp4 />
                     <Spacing size={44} />
                     <Comp5 />
-                </Container>
-            </Section>
+                </V.Container>
+            </V.Section>
         </>
     )
 }

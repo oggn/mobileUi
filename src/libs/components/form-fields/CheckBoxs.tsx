@@ -2,7 +2,7 @@ import { useRouter, NextRouter } from 'next/router'
 
 //libs
 import { colors } from '@/libs/themes'
-import { Checkbox, Container } from '@/_ui'
+import { Checkbox, V } from '@/_ui'
 
 //
 interface isValuesProps {
@@ -35,7 +35,7 @@ export default function CheckBoxs({
         )
 
     return (
-        <Container
+        <V.Container
             padding={{ horizontal: 12, vertical: 16 }}
             margin={{ top: 10 }}
             gap={14}
@@ -87,6 +87,6 @@ export default function CheckBoxs({
                     txtSize: 13,
                 }}
             />
-        </Container>
+        </V.Container>
     )
 }

@@ -5,7 +5,7 @@ import 'react-calendar/dist/Calendar.css'
 import styled from '@emotion/styled'
 
 import { colors, MQ } from '@/libs/themes'
-import { BlurLayer, Column, Container, Fixed } from '../index'
+import { BlurLayer, V, P } from '../index'
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
     open: boolean
@@ -42,7 +42,7 @@ export function CalenderModal({ open, onCancel, dateFormat = 'yyyy-mm-dd', value
     return (
         <>
             {open && <BlurLayer />}
-            <Fixed
+            <P.Fixed
                 height="100%"
                 align="center"
                 crossAlign="center"
@@ -55,7 +55,7 @@ export function CalenderModal({ open, onCancel, dateFormat = 'yyyy-mm-dd', value
                     },
                 }}
             >
-                <Column
+                <V.Column
                     align="center"
                     crossAlign="center"
                     padding={{ all: 20 }}
@@ -66,7 +66,7 @@ export function CalenderModal({ open, onCancel, dateFormat = 'yyyy-mm-dd', value
                         },
                     }}
                 >
-                    <Container
+                    <V.Container
                         padding={{ vertical: 10, horizontal: 0 }}
                         minWidth={300}
                         maxWidth={380}
@@ -100,11 +100,11 @@ export function CalenderModal({ open, onCancel, dateFormat = 'yyyy-mm-dd', value
                                 }
                             />
                         </StyledWrap>
-                    </Container>
+                    </V.Container>
 
                     <IconTheme onClick={onCancel} />
-                </Column>
-            </Fixed>
+                </V.Column>
+            </P.Fixed>
         </>
     )
 }

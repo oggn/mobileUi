@@ -1,90 +1,69 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 
 * {
-  box-sizing: border-box;
-  text-decoration: none;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-family: 'Noto Sans KR', sans-serif;
-  user-select: auto;
-  -webkit-touch-callout: none;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    user-select: auto;
+    -webkit-touch-callout: none;
 }
 
 html {
-  width: 100%;
-  height: 100%;
-  -webkit-text-size-adjust: 100%;
+    width: 100%;
+    height: 100%;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
-  display: block;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  text-rendering: optimizeLegibility;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-text-size-adjust: 100%;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-
-@font-face {
-  font-family: 'Noto Sans KR';
-  src: url('/public/fonts/NotoSansKR-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Noto Sans KR';
-  src: url('/public/fonts/NotoSansKR-SemiBold.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Noto Sans KR';
-  src: url('/public/fonts/NotoSansKR-Bold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
+    display: block;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-optical-sizing: auto;
 }
 
 @supports (padding: max(0px)) {
-  body {
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
-  }
+    body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
 }
 
 @supports (-webkit-touch-callout: none) {
-  html,
-  body #layout {
-    min-height: -webkit-fill-available;
-  }
+    html,
+    body #layout {
+        min-height: -webkit-fill-available;
+    }
 }
 
 #layout {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1 auto;
-  background-color: #fff;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 auto;
 }
 
 main {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
 }
 
 /* ////////////////////////////// */
@@ -100,42 +79,42 @@ h4,
 h5,
 h6,
 p {
-  margin: 0;
-  padding: 0;
-  transition: 0.3s ease-in-out;
+    margin: 0;
+    padding: 0;
+    transition: 0.3s ease-in-out;
 }
 
 a {
-  text-decoration: none;
-  color: #444444;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: 0.3s ease-in-out;
+    text-decoration: none;
+    color: #444444;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.3s ease-in-out;
 }
 
 ul,
 li {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
 }
 
 button {
-  background-color: transparent;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  width: auto;
-  transition: all 0.3s ease-in-out;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    width: auto;
+    transition: all 0.3s ease-in-out;
 }
 
 svg,
 img,
 picture {
-  transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 /* ////////////////////////////// */
@@ -144,24 +123,24 @@ picture {
 /* ////////////////////////////// */
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 6px;
+    width: 8px;
+    height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background-color: transparent;
+    background-color: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #999;
-  border-radius: 100px;
+    background-color: #999;
+    border-radius: 100px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #e2e2e2;
+    background: #e2e2e2;
 }
 ::-webkit-scrollbar-button:start:decrement,
 ::-webkit-scrollbar-button:end:increment {
-  width: 0;
-  height: 0;
-  background-color: transparent;
+    width: 0;
+    height: 0;
+    background-color: transparent;
 }
 
 /* ////////////////////////////// */
@@ -173,31 +152,31 @@ picture {
 input,
 textarea,
 select {
-  border: none;
-  outline: none;
-  text-decoration: all 0.3s ease-in-out;
-  background-color: transparent;
-  background: transparent;
-  border-radius: 0;
-  resize: none;
+    border: none;
+    outline: none;
+    text-decoration: all 0.3s ease-in-out;
+    background-color: transparent;
+    background: transparent;
+    border-radius: 0;
+    resize: none;
 }
 
 input[type='checkbox'],
 input[type='radio'] {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 select {
-  -webkit-appearance: none;
-  appearance: none;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  font-size: 15px;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
 }
 
 select::-ms-expand {
-  display: none;
+    display: none;
 }
 
 /* 크롬의 경우 */
@@ -205,10 +184,10 @@ input::-webkit-search-decoration,
 input::-webkit-search-cancel-button,
 input::-webkit-search-results-button,
 input::-webkit-search-results-decoration {
-  display: none;
+    display: none;
 }
 
 /* react-datepicker */
 .react-datepicker-wrapper {
-  width: 100%;
+    width: 100%;
 }

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { Children, HTMLAttributes, ReactElement, ReactNode, cloneElement, useId } from 'react'
-import { Column } from '../flex/Column'
+import { Column } from '../flex/view/Column'
 import { Txt } from '../typography/Txt'
 import { TextField } from './TextField'
 import { Textarea } from './Textarea'

@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
 import { NextRouter, useRouter } from 'next/router'
 
 //libs
-import { Button, Container, Row, Spacing, Txt } from '@/_ui'
+import { Button, V, Spacing, Txt } from '@/_ui'
 import { colors } from '@/libs/themes'
 import { useJenga } from '@/_ui/JengaProvider'
 
@@ -14,7 +13,7 @@ export default function Comp5() {
 
     return (
         <>
-            <Container>
+            <V.Container>
                 <Txt as="h2" size={18}>
                     {'Form 기능을\n빠르게 만들고 싶을땐?'}
                 </Txt>
@@ -25,7 +24,7 @@ export default function Comp5() {
 
                 <Spacing size={18} />
 
-                <Row gap={10}>
+                <V.Row gap={10}>
                     <Button
                         as="m"
                         onClick={() => router.push('/form-fields')}
@@ -48,8 +47,8 @@ export default function Comp5() {
                     >
                         Jenga Toast
                     </Button>
-                </Row>
-            </Container>
+                </V.Row>
+            </V.Container>
         </>
     )
 }

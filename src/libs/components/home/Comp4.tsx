@@ -2,19 +2,7 @@ import React, { useState } from 'react'
 
 //libs
 import { colors } from '@/libs/themes'
-import {
-    Column,
-    Row,
-    Container,
-    Spacing,
-    Txt,
-    TxtSpan,
-    TxtTab,
-    Button,
-    Dialog,
-    BottomSheet,
-    CalenderModal,
-} from '@/_ui'
+import { V, Spacing, Txt, TxtSpan, TxtTab, Button, Dialog, BottomSheet, CalenderModal } from '@/_ui'
 import { useMoment } from '@/libs/hooks/useMoment'
 
 //
@@ -24,7 +12,7 @@ export default function Comp4() {
 
     return (
         <>
-            <Container>
+            <V.Container>
                 <Txt as="h2" size={18}>
                     {'네이티브 모달을\n웹에서도 사용해보세요'}
                 </Txt>
@@ -41,19 +29,19 @@ export default function Comp4() {
 
                 <Spacing size={20} />
 
-                <Container
+                <V.Container
                     border={{ solid: 1, color: colors.chiffon400 }}
                     align="center"
                     padding={{ all: 16 }}
                     borderRadius={16}
                 >
-                    <Row gap={20} align="center" crossAlign="center">
+                    <V.Row gap={20} align="center" crossAlign="center">
                         <TxtTab onClick={() => setIsOpen('dialog')}>다이아 로그</TxtTab>
                         <TxtTab onClick={() => setIsOpen('bottomSheet')}>바텀 시트</TxtTab>
                         <TxtTab onClick={() => setIsOpen('calenderModal')}>켈린더 모달</TxtTab>
-                    </Row>
-                </Container>
-            </Container>
+                    </V.Row>
+                </V.Container>
+            </V.Container>
 
             {/* 다이아로그 모달 */}
             <Dialog
@@ -66,7 +54,7 @@ export default function Comp4() {
 
             {/* 바텀시트 모달 */}
             <BottomSheet open={isOpen === 'bottomSheet'} onCancel={() => setIsOpen(false)}>
-                <Column gap={10} padding={{ vertical: 16, horizontal: 20 }}>
+                <V.Column gap={10} padding={{ vertical: 16, horizontal: 20 }}>
                     <Txt as="h6" size={18}>
                         바텀 시트
                     </Txt>
@@ -78,7 +66,7 @@ export default function Comp4() {
                     <Button margin={{ top: 10 }} onClick={() => setIsOpen(false)}>
                         확인완료
                     </Button>
-                </Column>
+                </V.Column>
             </BottomSheet>
 
             {/* 캘린더 모달 */}

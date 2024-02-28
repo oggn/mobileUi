@@ -3,7 +3,7 @@ import React, { memo } from 'react'
 import Link from 'next/link'
 
 import { MQ, colors } from '../themes'
-import { Container, Drawer, TouchableOpacity, Txt } from '@/_ui'
+import { V, Drawer, TouchableOpacity, Txt } from '@/_ui'
 import FlatList from 'react-flatlist-ui'
 
 //assets
@@ -16,7 +16,7 @@ export const DrawerMenus = memo(function DrawerMenus() {
     const [isDrawer, setIsDrawer] = useRecoilState<boolean>(appDrawerAtom)
 
     return (
-        <Container css={{ display: 'none', [MQ[1]]: { display: 'flex' } }}>
+        <V.Container css={{ display: 'none', [MQ[1]]: { display: 'flex' } }}>
             <Drawer open={isDrawer} onCancel={() => setIsDrawer(false)}>
                 <FlatList
                     data={[
@@ -43,6 +43,6 @@ export const DrawerMenus = memo(function DrawerMenus() {
                     padding={{ top: 10, bottom: 40, horizontal: 10 }}
                 />
             </Drawer>
-        </Container>
+        </V.Container>
     )
 })

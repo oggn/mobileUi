@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { DrawerMenus } from './Drawer'
 
 //libs
-import { AppBar, IconTab, Row } from '@/_ui'
+import { AppBar, IconTab, V } from '@/_ui'
 import { MQ } from '@/libs/themes'
 import FlatList from 'react-flatlist-ui'
 
@@ -23,7 +23,7 @@ export default function Header() {
     return (
         <>
             <AppBar width={1200} serviceName="서비스명">
-                <Row
+                <V.Row
                     align="center"
                     height="100%"
                     crossAlign="space-between"
@@ -68,7 +68,7 @@ export default function Header() {
                     >
                         <ToastIcon fill="#666666" width="24px" height="24px" />
                     </IconTab>
-                </Row>
+                </V.Row>
             </AppBar>
 
             {/* 드로어 메뉴 */}

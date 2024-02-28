@@ -79,30 +79,31 @@ V2 버전으로 업데이트 되었으며, 모든 위젯이 업데이트 및 최
 
 -   ToastSnackBar : JengaProvider를 통해 addToast를 사용할 수 있습니다
 
-**flex**
+**flex > view**
 
--   Section : 섹션 레이아웃
--   Container : 상위 레이아웃
--   Row : 가로 정렬 레이아웃 위젯
--   Column : 세로 정렬 레이아웃 위젯
--   Form : form 위젯
+-   V : flex 기반의 view 위젯 컴포넌트
 
-**position**
+    -   Section : 섹션 레이아웃
+    -   Container : 상위 레이아웃
+    -   Row : 가로 정렬 레이아웃 위젯
+    -   Column : 세로 정렬 레이아웃 위젯
+    -   Form : form 위젯
+    -   ScrollDragHorizontal : 가로 터치 스크롤을 통해 영역 외의 레이아웃을 처리할 수 있습니다
+    -   Itmes : ul/ol 레이아웃
+    -   Item : li 레이아웃
 
--   Absolute
--   Fixed
--   Sticky
--   BottomFixed : 바텀 아래 영역 Fixed
+**flex > position**
 
-**items**
+-   P : flex 기반의 position 위젯 컴포넌트
 
--   ScrollDragHorizontal : 가로 터치 스크롤을 통해 영역 외의 레이아웃을 처리할 수 있습니다
--   Itmes : ul 레이아웃
--   Item : li 레이아웃
+    -   Absolute
+    -   Fixed
+    -   Sticky
+    -   BottomFixed : 바텀 아래 고정 영역의 Fixed 레이아웃
 
 **image**
 
--   Image : 서버사이드렌더링 이미지 기능 사용 가능합니다
+-   Image : 서버사이드렌더링(ssr) 이미지 기능
 
 **input**
 
