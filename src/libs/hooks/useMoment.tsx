@@ -23,7 +23,7 @@ export function useMoment(dateParam: string | Date) {
             }
 
             if (type === 'yyyy-mm') {
-                return `${year}-${formattedMonth}-${formattedDay}`
+                return `${year}-${formattedMonth}`
             }
 
             if (type === 'yyyy-mm-dd') {

@@ -49,6 +49,8 @@ import { Modal } from './modal/Modal'
 import { BottomSheet } from './modal/BottomSheet'
 import { CalenderModal } from './modal/CalenderModal'
 
+console.error = () => {}
+
 export {
     AppBar,
     Drawer,

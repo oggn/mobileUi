@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { ForwardedRef, InputHTMLAttributes, forwardRef, useState } from 'react'
+import React, { ForwardedRef, InputHTMLAttributes, forwardRef, useId, useState } from 'react'
 import { colors } from '../../libs/themes/colors'
 import { Txt } from '../typography/Txt'
 import { V } from '@/_ui'
@@ -23,6 +23,8 @@ interface CheckProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>
 }
 
 export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: ForwardedRef<HTMLInputElement>) {
+    const uid = useId()
+
     const { id = 'check', type = 'checkbox', disabled, theme = 'light', checkSize = 16, label } = props
     const [hover, setHover] = useState(false)
 
@@ -58,7 +60,7 @@ export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: For
                     minHeight: checkSize + 10,
                     cursor: !disabled ? 'cursor' : 'default',
                 }}
-                htmlFor={id}
+                htmlFor={id ?? uid}
             >
                 <div
                     css={{
@@ -85,7 +87,7 @@ export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: For
                             cursor: 'default',
                         },
                     }}
-                    id={id}
+                    id={id ?? uid}
                     {...props}
                 />
             </label>
@@ -93,7 +95,7 @@ export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: For
             {!!label && (
                 <V.Column gap={4}>
                     <label
-                        htmlFor={id}
+                        htmlFor={id ?? uid}
                         onMouseEnter={() => setHover(true)}
                         onMouseLeave={() => setHover(false)}
                         css={{

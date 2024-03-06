@@ -1,22 +1,31 @@
 /** @jsxImportSource @emotion/react */
-import React, { HTMLAttributes, useCallback, useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import styled from '@emotion/styled'
-
 import { colors, MQ } from '@/libs/themes'
 import { BlurLayer, V, P } from '../index'
 
-interface Props extends HTMLAttributes<HTMLDivElement> {
+interface Props {
+    dateFormat: string
     open: boolean
     onCancel: () => void
-    dateFormat?: 'yyyy-mm-dd' | 'yyyy-mm'
-    value?: Date | string
-    onChange?: any
+    value: Date | null
+    minDate?: Date
+    maxDate?: Date
+    onChange: (date: Date | null | any) => void
     theme?: 'light' | 'dark'
 }
 
-export function CalenderModal({ open, onCancel, dateFormat = 'yyyy-mm-dd', value, onChange, theme = 'light' }: Props) {
+export function CalenderModal({
+    open,
+    onCancel,
+    dateFormat = 'yyyy-mm-dd',
+    value,
+    onChange,
+    theme = 'light',
+    ...props
+}: Props) {
     const ref = useRef<HTMLDivElement>(null)
 
     const THEME_VARIANT = {
@@ -47,7 +56,12 @@ export function CalenderModal({ open, onCancel, dateFormat = 'yyyy-mm-dd', value
                 align="center"
                 crossAlign="center"
                 zIndex={9999}
-                position={{ top: open ? 0 : ('120%' as any), bottom: 0, right: 0, left: 0 }}
+                position={{
+                    top: open ? 0 : ('120%' as any),
+                    bottom: 0,
+                    right: 0,
+                    left: 0,
+                }}
                 transitionTime={0.3}
                 css={{
                     [MQ[3]]: {
@@ -58,7 +72,6 @@ export function CalenderModal({ open, onCancel, dateFormat = 'yyyy-mm-dd', value
                 <V.Column
                     align="center"
                     crossAlign="center"
-                    padding={{ all: 20 }}
                     gap={12}
                     css={{
                         [MQ[3]]: {
@@ -98,6 +111,7 @@ export function CalenderModal({ open, onCancel, dateFormat = 'yyyy-mm-dd', value
                                           ? 'year'
                                           : undefined
                                 }
+                                {...props}
                             />
                         </StyledWrap>
                     </V.Container>
@@ -167,7 +181,8 @@ const StyledWrap = styled.div`
         border-radius: 10px;
     }
     .react-calendar__navigation button[disabled] {
-        background-color: #f0f0f0;
+        opacity: 0.4;
+        cursor: default;
     }
     abbr[title] {
         text-decoration: none;
@@ -257,6 +272,12 @@ const StyledWrap = styled.div`
         border-radius: 12px;
         font-weight: 500;
         transition: 0.2s ease-in-out;
+    }
+
+    .react-calendar__year-view__months__month:disabled {
+        cursor: default;
+        background-color: transparent;
+        opacity: 0.5;
     }
 
     /* .react-calendar__tile--active:enabled:hover,

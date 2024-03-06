@@ -33,13 +33,16 @@ export function BottomFixed(props: Props) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                transition: '0.3s ease-in-out',
             }}
         >
             <Fixed
                 minHeight={props.height ?? 60}
                 maxHeight={props.height ?? 60}
+                height="100%"
                 position={{ bottom: 0, left: 0, right: 0 }}
                 align="center"
+                transitionTime={0.3}
             >
                 <div
                     css={{

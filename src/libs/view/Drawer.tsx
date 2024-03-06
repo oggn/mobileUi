@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import React, { memo } from 'react'
 import Link from 'next/link'
 
 import { MQ, colors } from '../themes'
@@ -12,7 +11,7 @@ import { useRecoilState } from 'recoil'
 import { appDrawerAtom } from '../atoms/app-atom'
 
 //
-export const DrawerMenus = memo(function DrawerMenus() {
+export const DrawerMenus = () => {
     const [isDrawer, setIsDrawer] = useRecoilState<boolean>(appDrawerAtom)
 
     return (
@@ -45,4 +44,4 @@ export const DrawerMenus = memo(function DrawerMenus() {
             </Drawer>
         </V.Container>
     )
-})
+}
