@@ -46,8 +46,8 @@ V2 버전으로 업데이트 되었으며, 모든 위젯이 업데이트 및 최
 -   plaiceholder: 3.0.0
 -   react-cookie : 7.0.2
 -   react-calender : 4.8.0
--   react-image-cached-resizer : 1.2.0 (자체 배포/개발 패키지)
--   react-flatlist-ui : 1.4.0 (자체 배포/개발 패키지)
+-   react-image-cached-resizer : 1.3.2 (자체 배포/개발 패키지)
+-   react-flatlist-ui : 1.4.1 (자체 배포/개발 패키지)
 
 ---
 
