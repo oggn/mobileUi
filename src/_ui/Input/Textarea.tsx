@@ -8,12 +8,11 @@ import React, {
     useEffect,
     useState,
 } from 'react'
-import { Row } from '../flex/view/Row'
 import { GlobalInputTheme } from '../_themes/input'
 import { ScrollTheme, ScrollType } from '../_themes/scroll'
 import { TxtTab } from '../tab/TxtTab'
-import { Column } from '../flex/view/Column'
 import { TxtSpan } from '../typography/TxtSpan'
+import { V } from '@/_ui'
 
 interface Props extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'>, ScrollType {
     theme?: 'light' | 'dark'
@@ -55,7 +54,7 @@ const Textarea = forwardRef((props: Props, ref: ForwardedRef<HTMLTextAreaElement
 
     const VARIANTS = {
         light: {
-            solidColor: !error && isFocused ? '#0085FF' : '#e2e2e2' && error ? '#FF6767' : '#e2e2e2',
+            solidColor: !error && isFocused ? '#b9d0e4' : '#e2e2e2' && error ? '#FF6767' : '#e2e2e2',
             color: disabled ? '#797979' : '#555',
             placeholder: '#ccc',
             activeColor: !error && isFocused ? '#f8f9fc' : '#fff',
@@ -81,11 +80,15 @@ const Textarea = forwardRef((props: Props, ref: ForwardedRef<HTMLTextAreaElement
     }) as any
 
     return (
-        <Column gap={6}>
-            <Row
+        <V.Column gap={6}>
+            <V.Row
                 align="end"
                 minHeight={50}
-                border={{ solid: 1, position: 'all', color: VARIANTS[theme].solidColor }}
+                border={{
+                    solid: 1,
+                    position: 'all',
+                    color: VARIANTS[theme].solidColor,
+                }}
                 borderRadius={14}
                 backgroundColor={disabled ? VARIANTS[theme].disabledColor : VARIANTS[theme].activeColor}
                 transitionTime={0.5}
@@ -130,7 +133,7 @@ const Textarea = forwardRef((props: Props, ref: ForwardedRef<HTMLTextAreaElement
                         {tab.name ?? '확인'}
                     </TxtTab>
                 )}
-            </Row>
+            </V.Row>
 
             {textCountActive && (
                 <TxtSpan color="#999" size={12}>
@@ -144,7 +147,7 @@ const Textarea = forwardRef((props: Props, ref: ForwardedRef<HTMLTextAreaElement
                     {edge}
                 </TxtSpan>
             )}
-        </Column>
+        </V.Column>
     )
 })
 

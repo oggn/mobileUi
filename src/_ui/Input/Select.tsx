@@ -1,10 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import React, { ReactElement, SelectHTMLAttributes, forwardRef, useCallback, useState } from 'react'
 import { Option } from './Option'
-import { Column } from '../flex/view/Column'
-import { Row } from '../flex/view/Row'
 import { GlobalInputTheme } from '../_themes/input'
 import { Txt } from '../typography/Txt'
+import { P, V } from '@/_ui'
 
 interface Props extends SelectHTMLAttributes<HTMLSelectElement> {
     as?: 's' | 'm' | 'l'
@@ -29,13 +28,13 @@ const SelectComponent = forwardRef<HTMLSelectElement, Props>((props: Props, ref)
 
     const THEME_VARIANTS = {
         light: {
-            solidColor: !error && isFocused ? '#1889F1' : '#e2e2e2' && error ? '#FF6767' : '#e2e2e2',
+            solidColor: !error && isFocused ? '#b9d0e4' : '#e2e2e2' && error ? '#FF6767' : '#e2e2e2',
             color: disabled ? '#797979' : '#555',
             placeholder: '#ccc',
             activeColor: !error && isFocused ? '#f8f9fc' : '#fff',
             edgeColor: '#999',
             disabledColor: '#f4f4f4',
-            selectFill: '#ddd',
+            selectFill: '#d2d2d2',
             tolTip: '#999',
         },
         dark: {
@@ -51,7 +50,14 @@ const SelectComponent = forwardRef<HTMLSelectElement, Props>((props: Props, ref)
     } as const
 
     const SIZE_VARIANTS = {
-        s: { width: 'auto', txtSize: '0.813em', height: 38, padding: 8, br: 10, selectSize: 8 },
+        s: {
+            width: 'auto',
+            txtSize: '0.813em',
+            height: 38,
+            padding: 8,
+            br: 10,
+            selectSize: 8,
+        },
         m: {
             width: '100%',
             txtSize: '0.875em',
@@ -60,13 +66,20 @@ const SelectComponent = forwardRef<HTMLSelectElement, Props>((props: Props, ref)
             br: 12,
             selectSize: 8,
         },
-        l: { width: '100%', txtSize: '0.938em', height: 50, padding: 13, br: 14, selectSize: 12 },
+        l: {
+            width: '100%',
+            txtSize: '0.938em',
+            height: 50,
+            padding: 13,
+            br: 14,
+            selectSize: 12,
+        },
     } as const
 
     const inputT = GlobalInputTheme() as any
 
     return (
-        <Column>
+        <V.Column>
             {label && (
                 <label
                     css={{
@@ -78,17 +91,20 @@ const SelectComponent = forwardRef<HTMLSelectElement, Props>((props: Props, ref)
                 </label>
             )}
 
-            <Row
+            <V.Row
                 width={SIZE_VARIANTS[as].width}
                 maxWidth={width}
                 align="center"
                 gap={6}
                 minHeight={SIZE_VARIANTS[as].height}
                 maxHeight={SIZE_VARIANTS[as].height}
-                border={{ solid: 1, position: 'all', color: THEME_VARIANTS[theme].solidColor }}
+                border={{
+                    solid: 1,
+                    position: 'all',
+                    color: THEME_VARIANTS[theme].solidColor,
+                }}
                 borderRadius={SIZE_VARIANTS[as].br}
                 backgroundColor={disabled ? THEME_VARIANTS[theme].disabledColor : THEME_VARIANTS[theme].activeColor}
-                padding={{ right: as === 'l' ? 10 : 8 }}
                 transitionTime={0.5}
             >
                 <select
@@ -103,6 +119,7 @@ const SelectComponent = forwardRef<HTMLSelectElement, Props>((props: Props, ref)
                         color: THEME_VARIANTS[theme].color,
                         fontSize: SIZE_VARIANTS[as].txtSize,
                         padding: SIZE_VARIANTS[as].padding,
+                        paddingRight: as === 'l' ? 10 : 8,
                         borderRadius: SIZE_VARIANTS[as].br,
                         '::placeholder': { color: THEME_VARIANTS[theme].placeholder },
                     }}
@@ -110,8 +127,10 @@ const SelectComponent = forwardRef<HTMLSelectElement, Props>((props: Props, ref)
                     {options?.map((item, index) => renderItem(item, index)).flat()}
                 </select>
 
-                <SelectIcon size={SIZE_VARIANTS[as].selectSize} fill={THEME_VARIANTS[theme].selectFill} />
-            </Row>
+                <P.Absolute position={{ right: 8 }}>
+                    <SelectIcon size={SIZE_VARIANTS[as].selectSize} fill={THEME_VARIANTS[theme].selectFill} />
+                </P.Absolute>
+            </V.Row>
 
             {error && (
                 <Txt color="#F25757" size={12} margin={{ top: 6 }}>
@@ -124,7 +143,7 @@ const SelectComponent = forwardRef<HTMLSelectElement, Props>((props: Props, ref)
                     {tolTip}
                 </Txt>
             )}
-        </Column>
+        </V.Column>
     )
 })
 
@@ -167,7 +186,7 @@ const themes = {
 const SelectIcon = ({ fill, size }: { fill: string; size: number }) => {
     return (
         <div css={{ display: 'flex', alignItems: 'center' }}>
-            <svg width={size} viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width={size} viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6.5 10L0.00481023 0.249999L12.9952 0.25L6.5 10Z" fill={fill} />
             </svg>
         </div>

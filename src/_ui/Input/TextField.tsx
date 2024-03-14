@@ -1,10 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, InputHTMLAttributes, ReactNode, forwardRef, useCallback, useState } from 'react'
-import { Row } from '../flex/view/Row'
 import { GlobalInputTheme } from '../_themes/input'
 import { TxtSpan } from '../typography/TxtSpan'
 import { TxtTab } from '../tab/TxtTab'
-import { Column } from '../flex/view/Column'
+import { V } from '@/_ui'
 
 interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
     as?: 's' | 'm' | 'l'
@@ -34,7 +33,7 @@ const TextField = forwardRef((props: Props, ref: ForwardedRef<HTMLInputElement>)
 
     const THEME_VARIANTS = {
         light: {
-            solidColor: !error && isFocused ? '#1889F1' : '#e2e2e2' && error ? '#FF6767' : '#e2e2e2',
+            solidColor: !error && isFocused ? '#b9d0e4' : '#e2e2e2' && error ? '#FF6767' : '#e2e2e2',
             color: disabled ? '#797979' : '#555',
             placeholder: '#ccc',
             activeColor: !error && isFocused ? '#f8f9fc' : '#fff',
@@ -53,7 +52,13 @@ const TextField = forwardRef((props: Props, ref: ForwardedRef<HTMLInputElement>)
 
     const SIZE_VARIANTS = {
         s: { width: 'auto', txtSize: '0.813em', height: 38, padding: 8, br: 10 },
-        m: { width: '100%', txtSize: '0.875em', height: 44, padding: '10px 11px', br: 12 },
+        m: {
+            width: '100%',
+            txtSize: '0.875em',
+            height: 44,
+            padding: '10px 11px',
+            br: 12,
+        },
         l: { width: '100%', txtSize: '0.938em', height: 50, padding: 13, br: 14 },
     } as const
 
@@ -75,14 +80,18 @@ const TextField = forwardRef((props: Props, ref: ForwardedRef<HTMLInputElement>)
     }
 
     return (
-        <Column gap={6}>
-            <Row
+        <V.Column gap={6}>
+            <V.Row
                 width={SIZE_VARIANTS[as].width}
                 maxWidth={width}
                 align="center"
                 minHeight={SIZE_VARIANTS[as].height}
                 maxHeight={SIZE_VARIANTS[as].height}
-                border={{ solid: 1, position: 'all', color: THEME_VARIANTS[theme].solidColor }}
+                border={{
+                    solid: 1,
+                    position: 'all',
+                    color: THEME_VARIANTS[theme].solidColor,
+                }}
                 borderRadius={SIZE_VARIANTS[as].br}
                 backgroundColor={disabled ? THEME_VARIANTS[theme].disabledColor : THEME_VARIANTS[theme].activeColor}
                 transitionTime={0.5}
@@ -127,14 +136,14 @@ const TextField = forwardRef((props: Props, ref: ForwardedRef<HTMLInputElement>)
                         {tab.name ?? '확인'}
                     </TxtTab>
                 )}
-            </Row>
+            </V.Row>
 
             {!!edge && (
                 <TxtSpan padding={{ right: 10 }} color={THEME_VARIANTS[theme].edgeColor}>
                     {edge}
                 </TxtSpan>
             )}
-        </Column>
+        </V.Column>
     )
 })
 

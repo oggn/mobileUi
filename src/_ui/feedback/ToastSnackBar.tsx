@@ -26,7 +26,7 @@ export function ToastSnackBar({
   `
 
     const THEME_VARIANT = {
-        light: { bg: '#fff', title: '#555', sub: '#999' },
+        light: { bg: '#fff', title: '#555', sub: '#888' },
         dark: { bg: '#222', title: '#e2e2e2', sub: '#999' },
     }
 
@@ -35,7 +35,7 @@ export function ToastSnackBar({
             key={id}
             css={{
                 backgroundColor: THEME_VARIANT[theme].bg,
-                boxShadow: '0 2px 20px rgba(0,0,0,0.11)',
+                boxShadow: '0 2px 20px rgba(0,0,0,0.12)',
                 padding: '10px 14px',
                 marginTop: '8px',
                 borderRadius: '12px',
@@ -83,7 +83,7 @@ export function ToastSnackBar({
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
-                    rowGap: 2,
+                    rowGap: 4,
                 }}
             >
                 <Txt
@@ -97,7 +97,15 @@ export function ToastSnackBar({
                     {title}
                 </Txt>
                 {description && (
-                    <p css={{ fontSize: 12, color: THEME_VARIANT[theme].sub, whiteSpace: 'pre-line' }}>{description}</p>
+                    <p
+                        css={{
+                            fontSize: 13,
+                            color: THEME_VARIANT[theme].sub,
+                            whiteSpace: 'pre-line',
+                        }}
+                    >
+                        {description}
+                    </p>
                 )}
             </div>
         </div>

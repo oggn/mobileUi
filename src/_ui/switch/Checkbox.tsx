@@ -107,6 +107,7 @@ export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: For
                             weight={label.titleWeight ?? 'medium'}
                             size={label.titleSize ?? 14}
                             color={label.titleColor ?? VARIANTS[theme].labelTitleColor}
+                            css={{ userSelect: 'none' }}
                         >
                             {label.title}
                         </Txt>

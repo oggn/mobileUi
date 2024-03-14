@@ -35,7 +35,7 @@ export function JengaProvider({ children }: { children: ReactNode }) {
         if (toasts.length > 0) {
             const timer = setTimeout(() => {
                 setToasts((prevToasts) => prevToasts.slice(1))
-            }, 2500)
+            }, 3500)
             return () => clearTimeout(timer)
         }
     }, [toasts])
