@@ -14,6 +14,7 @@ interface Props {
         left?: number | string
         right?: number | string
     }
+    backgroundColor?: string
 }
 
 export function BottomFixedAnimate(props: Props) {
@@ -44,6 +45,7 @@ export function BottomFixedAnimate(props: Props) {
                 position={{ bottom: props.animate ? 0 : ('-100%' as any), left: 0, right: 0 }}
                 align="center"
                 transitionTime={0.2}
+                backgroundColor={props.backgroundColor}
             >
                 <div
                     css={{

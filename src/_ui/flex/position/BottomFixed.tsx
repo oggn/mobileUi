@@ -14,6 +14,7 @@ interface Props {
         left?: number | string
         right?: number | string
     }
+    backgroundColor?: string
 }
 
 export function BottomFixed(props: Props) {
@@ -45,6 +46,7 @@ export function BottomFixed(props: Props) {
                 position={{ bottom: 0, left: 0, right: 0 }}
                 align="center"
                 transitionTime={0.3}
+                backgroundColor={props.backgroundColor}
             >
                 <div
                     css={{

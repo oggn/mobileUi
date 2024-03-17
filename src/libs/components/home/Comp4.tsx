@@ -49,7 +49,7 @@ export default function Comp4() {
                 onCancel={() => setIsOpen(false)}
                 title="다이아 로그"
                 description={'Android OS에서 영감을 받은\nDialog 모달 위젯이에요!'}
-                tabs={[{ name: '닫기' }]}
+                tabs={[{ name: '닫기', onClick: () => setIsOpen(false) }]}
             />
 
             {/* 바텀시트 모달 */}

@@ -38,13 +38,13 @@ export const FlexTheme = ({
             columnGap: crossGap,
         },
         'horizontal-reverse': {
-            flexDirection: 'row' as const,
+            flexDirection: 'row-reverse' as const,
             align: align ?? 'stretch',
             rowGap: crossGap,
             columnGap: gap,
         },
         'vertical-reverse': {
-            flexDirection: 'column' as const,
+            flexDirection: 'column-reverse' as const,
             align: align ?? 'flex-start',
             rowGap: gap,
             columnGap: crossGap,

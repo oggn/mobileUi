@@ -7,7 +7,7 @@ import { colors, MQ } from '@/libs/themes'
 import { BlurLayer, V, P } from '../index'
 
 interface Props {
-    dateFormat: string
+    dateFormat?: string
     open: boolean
     onCancel: () => void
     value: Date | null
