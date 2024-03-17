@@ -1,9 +1,8 @@
 import { NextRouter, useRouter } from 'next/router'
 
 //libs
-import { Button, V, Spacing, Txt } from '@/_ui'
+import { Button, V, Spacing, Txt, useJenga } from '@/_ui'
 import { colors } from '@/libs/themes'
-import { useJenga } from '@/_ui/JengaProvider'
 
 //
 export default function Comp5() {

@@ -48,6 +48,7 @@ import { Dialog } from './modal/Dialog'
 import { Modal } from './modal/Modal'
 import { BottomSheet } from './modal/BottomSheet'
 import { CalenderModal } from './modal/CalenderModal'
+import { useJenga } from './JengaProvider'
 
 console.error = () => {}
 
@@ -81,4 +82,5 @@ export {
     CalenderModal,
     Image,
     TouchableOpacity,
+    useJenga,
 }

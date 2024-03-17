@@ -99,7 +99,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>((props: Props, ref: F
                 transition: '0.2s ease-in-out',
                 whiteSpace: 'nowrap',
 
-                '&:disabled': { backgroundColor: '#c2c2c2', color: '#fff', transform: 'scale(1)' },
+                '&:disabled': { backgroundColor: '#ccc', color: '#fff', transform: 'scale(1)' },
                 '&:hover': { filter: 'saturate(90%)', boxShadow: 'none' },
                 '&:active': { transform: 'scale(0.95)', boxShadow: 'none' },
             }}
