@@ -100,6 +100,7 @@ V2 버전으로 업데이트 되었으며, 모든 위젯이 업데이트 및 최
     -   Fixed
     -   Sticky
     -   BottomFixed : 바텀 아래 고정 영역의 Fixed 레이아웃
+    -   BottomFixedAnimate : 바텀 애니메이션 Fixed 레이아웃
 
 **image**
 

@@ -1,9 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import React, { ReactNode, useCallback, useEffect, useRef, HTMLAttributes } from 'react'
 import { BlurLayer } from '../display/BlurLayer'
-import { Container } from '../flex/view/Container'
-import { Absolute } from '../flex/position/Absolute'
 import { IconTab } from '../tab/IconTab'
+import { P } from '../flex/P'
+import { V } from '../flex/V'
+import { MQ } from '@/libs/themes'
 
 interface Props extends HTMLAttributes<HTMLElement> {
     children: ReactNode
@@ -11,10 +12,11 @@ interface Props extends HTMLAttributes<HTMLElement> {
     open: boolean
     onCancel: () => void
     modalSize?: number
+    outSideCloseActive?: boolean
 }
 
-export function Modal(props: Props) {
-    const { theme = 'light', modalSize = 560, open, onCancel } = props
+export const Modal = (props: Props) => {
+    const { theme = 'light', modalSize = 560, open, onCancel, outSideCloseActive = true } = props
     const ref = useRef<HTMLDivElement>(null)
 
     const THEME_VARIANT = {
@@ -25,7 +27,7 @@ export function Modal(props: Props) {
     // 외부 모달 닫기
     const clickModalOutside = useCallback(
         (event: MouseEvent) => {
-            if (open && ref.current && !ref.current.contains(event.target as Node)) onCancel()
+            if (outSideCloseActive) if (open && ref.current && !ref.current.contains(event.target as Node)) onCancel()
         },
         [open, onCancel],
     )
@@ -42,25 +44,41 @@ export function Modal(props: Props) {
         <>
             {open && <BlurLayer />}
 
-            <div css={{ ...Themes.wrap, top: open ? 0 : '150%', transition: '0.25s ease-in-out' }}>
-                <Container
+            <P.Fixed
+                zIndex={9999}
+                width="100%"
+                height="100%"
+                position={{
+                    right: 0,
+                    left: 0,
+                    top: open ? 0 : ('150%' as any),
+                }}
+                padding={{ all: 20 }}
+                align="center"
+                crossAlign="center"
+                transitionTime={0.3}
+                css={{ [MQ[2]]: { padding: '40px 0 0', justifyContent: 'start' } }}
+            >
+                <V.Container
                     maxWidth={modalSize}
                     minWidth={320}
                     padding={{ horizontal: 18, top: 26, bottom: 16 }}
-                    borderRadius={20}
+                    borderRadius={26}
                     backgroundColor={THEME_VARIANT[theme].bg}
                     ref={ref}
+                    scroll={{ type: 'auto' }}
+                    css={{ [MQ[2]]: { height: '100%', borderRadius: '30px 30px 0 0' } }}
                     {...props}
                 >
                     {props.children}
 
-                    <Absolute position={{ top: 4, right: 4 }}>
+                    <P.Absolute position={{ top: 6, right: 6 }}>
                         <IconTab onClick={onCancel}>
                             <CancelIcon fill={THEME_VARIANT[theme].cancelColor} />
                         </IconTab>
-                    </Absolute>
-                </Container>
-            </div>
+                    </P.Absolute>
+                </V.Container>
+            </P.Fixed>
         </>
     )
 }
@@ -80,19 +98,3 @@ function CancelIcon({ fill = '#ccc' }: { fill?: string }) {
         </svg>
     )
 }
-
-const Themes = {
-    wrap: {
-        width: '100%',
-        height: '100%',
-        position: 'fixed',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '20px',
-        zIndex: 9999,
-    },
-} as any

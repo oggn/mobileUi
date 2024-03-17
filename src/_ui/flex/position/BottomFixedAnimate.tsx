@@ -3,8 +3,8 @@ import { Fixed } from './Fixed'
 
 interface Props {
     children: ReactNode
+    animate: boolean
     height?: number
-    zIndex?: number
     padding?: {
         all?: number | string
         horizontal?: number | string
@@ -16,7 +16,7 @@ interface Props {
     }
 }
 
-export function BottomFixed(props: Props) {
+export function BottomFixedAnimate(props: Props) {
     const p_all = props.padding?.all
     const p_V = props.padding?.vertical
     const p_H = props.padding?.horizontal
@@ -29,22 +29,21 @@ export function BottomFixed(props: Props) {
         <div
             css={{
                 width: '100%',
-                maxHeight: props.height,
-                minHeight: props.height,
+                maxHeight: props.animate ? props.height : 0,
+                minHeight: props.animate ? props.height : 0,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                transition: '0.3s ease-in-out',
+                transition: '0.2s ease-in-out',
             }}
         >
             <Fixed
-                zIndex={props.zIndex ?? 9000}
                 minHeight={props.height ?? 60}
                 maxHeight={props.height ?? 60}
                 height="100%"
-                position={{ bottom: 0, left: 0, right: 0 }}
+                position={{ bottom: props.animate ? 0 : ('-100%' as any), left: 0, right: 0 }}
                 align="center"
-                transitionTime={0.3}
+                transitionTime={0.2}
             >
                 <div
                     css={{

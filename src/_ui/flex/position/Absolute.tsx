@@ -27,7 +27,7 @@ interface Props
 const Absolute = forwardRef((props: Props, ref: ForwardedRef<HTMLDivElement>) => {
     const FlexT = FlexTheme({
         flex: props.flex,
-        direction: props.direction ?? 'vertical',
+        direction: props.direction ?? 'horizontal',
         align: props.align,
         crossAlign: props.crossAlign,
         wrap: props.wrap,

@@ -2,7 +2,7 @@ export interface FlexType {
     flex?: number | string
     direction?: 'horizontal' | 'vertical' | 'horizontal-reverse' | 'vertical-reverse'
     align?: 'start' | 'end' | 'center' | 'stretch'
-    crossAlign?: 'start' | 'center' | 'space-between' | 'space-around'
+    crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'end'
     alignContent?: 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly'
     wrap?: 'nowrap' | 'wrap' | 'wrap-reverse'
     basis?: number | string
