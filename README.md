@@ -46,7 +46,7 @@ V2 버전으로 업데이트 되었으며, 모든 위젯이 업데이트 및 최
 -   plaiceholder: 3.0.0
 -   react-cookie : 7.0.2
 -   react-calender : 4.8.0
--   react-image-cached-resizer : 1.3.2 (자체 배포/개발 패키지)
+-   react-image-cached-resizer : 1.3.3 (자체 배포/개발 패키지)
 -   react-flatlist-ui : 1.4.1 (자체 배포/개발 패키지)
 
 ---
@@ -67,7 +67,7 @@ V2 버전으로 업데이트 되었으며, 모든 위젯이 업데이트 및 최
 -   Appbar : 헤더의 앱바
 -   Drawer : 메뉴 드로어
 -   DrawerAccordion : 아코디언 메뉴 드로어
--   BottomNavigationBar : 바텀네비게이션 바/버튼 기능
+-   BottomNavigator : 바텀네비게이션 바/버튼 기능
 
 **display**
 

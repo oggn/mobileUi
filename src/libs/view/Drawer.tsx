@@ -5,8 +5,7 @@ import { MQ, colors } from '../themes'
 import { V, Drawer, TouchableOpacity, Txt } from '@/_ui'
 import FlatList from 'react-flatlist-ui'
 
-//assets
-import { PathIcon } from '@/libs/assets/icons'
+//atoms
 import { useRecoilState } from 'recoil'
 import { appDrawerAtom } from '../atoms/app-atom'
 
@@ -27,14 +26,8 @@ export const DrawerMenus = () => {
                     keyExtractor={(i) => i}
                     renderItem={(item) => (
                         <Link href={item?.path} css={{ width: '100%' }}>
-                            <TouchableOpacity
-                                align="center"
-                                crossAlign="space-between"
-                                padding={{ all: 10 }}
-                                borderRadius={14}
-                            >
+                            <TouchableOpacity align="center" padding={{ all: 10 }} borderRadius={14}>
                                 <Txt>{item.name}</Txt>
-                                <PathIcon fill={colors.grey300} />
                             </TouchableOpacity>
                         </Link>
                     )}

@@ -10,7 +10,7 @@ import { MQ } from '@/libs/themes'
 import FlatList from 'react-flatlist-ui'
 
 //assets
-import { ToastIcon } from '@/libs/assets/icons'
+import { ToastIcon } from '../assets/icon-stroke'
 
 //atoms
 import { useRecoilState } from 'recoil'

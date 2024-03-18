@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import React, { Children, ForwardedRef, HTMLAttributes, ReactElement, ReactNode, forwardRef } from 'react'
+import React, { Children, HTMLAttributes, ReactElement, ReactNode, forwardRef } from 'react'
 import { Interpolation, Theme } from '@emotion/react'
 import Link from 'next/link'
-import { V, TxtSpan } from '../index'
+import { V, TxtSpan, P, TouchableOpacity } from '../index'
 import { MQ } from '@/libs/themes'
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
@@ -27,20 +27,14 @@ const Tab = forwardRef<HTMLAnchorElement, MenuProps>(({ children, href, label, .
 
     return (
         <Link ref={ref} href={href} passHref>
-            <V.Column
+            <TouchableOpacity
                 padding={{ all: 8 }}
                 gap={3}
+                direction="vertical"
                 align="center"
                 crossAlign="center"
                 borderRadius={14}
-                css={{
-                    '&:hover': { backgroundColor: '#f8f9fc' },
-                    [MQ[3]]: {
-                        maxWidth: '60px',
-                        minWidth: '60px',
-                        '&:hover': { backgroundColor: 'transparent' },
-                    },
-                }}
+                css={{ [MQ[3]]: { maxWidth: '60px', minWidth: '60px' } }}
             >
                 <V.Container
                     width="auto"
@@ -55,7 +49,7 @@ const Tab = forwardRef<HTMLAnchorElement, MenuProps>(({ children, href, label, .
                 <TxtSpan size={13} css={{ [MQ[3]]: { fontSize: '0.68rem' } }} {...props}>
                     {label}
                 </TxtSpan>
-            </V.Column>
+            </TouchableOpacity>
         </Link>
     )
 })
@@ -70,68 +64,34 @@ const BottomTabNavigatorBase: React.ForwardRefRenderFunction<HTMLDivElement, Pro
 
     if (childrenArray.length < 7) {
         return (
-            <V.Container ref={ref} height="100%" css={[ContainerTheme(design)]}>
-                <V.Row align="center" crossAlign="center" css={[RowTheme(design)]}>
-                    <nav css={[NavTheme(design, maxWidth)]}>{childrenArray}</nav>
-                </V.Row>
-            </V.Container>
+            <P.BottomFixed height={design === 'shape' ? 100 : 70}>
+                {design === 'shape' && (
+                    <V.Container align="center" padding={{ horizontal: 10 }} ref={ref}>
+                        <nav css={[NavTheme(design, maxWidth)]}>{childrenArray}</nav>
+                    </V.Container>
+                )}
+
+                {design === 'default' && (
+                    <V.Container
+                        align="center"
+                        backgroundColor="#Fff"
+                        border={{ solid: 1, position: 'top', color: '#eee' }}
+                        ref={ref}
+                    >
+                        <nav css={[NavTheme(design, maxWidth)]}>{childrenArray}</nav>
+                    </V.Container>
+                )}
+            </P.BottomFixed>
         )
     }
 
     return null
 }
 
-const BottomTabNavigator = forwardRef(BottomTabNavigatorBase) as BottomTabNavigatorComponent
-BottomTabNavigator.Tab = Tab
+const BottomNavigator = forwardRef(BottomTabNavigatorBase) as BottomTabNavigatorComponent
+BottomNavigator.Tab = Tab
 
-export { BottomTabNavigator }
-
-// ------------------------------------
-// -------------- Styles --------------
-// ------------------------------------
-function ContainerTheme(design: 'default' | 'shape'): Interpolation<Theme> {
-    if (design === 'default') {
-        return {
-            paddingBottom: 'calc(env(safe-area-inset-bottom) + 75px)',
-            [MQ[2]]: { paddingBottom: 'calc(env(safe-area-inset-bottom) + 66.67px)' },
-        }
-    }
-
-    if (design === 'shape') {
-        return {
-            paddingBottom: 'calc(env(safe-area-inset-bottom) + 114.33px)',
-            [MQ[2]]: { paddingBottom: 'calc(env(safe-area-inset-bottom) + 86px)' },
-        }
-    }
-}
-
-function RowTheme(design: 'default' | 'shape'): Interpolation<Theme> {
-    const viewThemes = (): Interpolation<Theme> => {
-        return { zIndex: '8999', position: 'fixed', bottom: '0', left: '0', right: '0' }
-    }
-
-    if (design === 'default') {
-        return {
-            ...(viewThemes() as object),
-            paddingTop: 'env(safe-area-inset-top)',
-            paddingBottom: 'env(safe-area-inset-bottom)',
-            borderTop: '1px solid #f0f0f0',
-            backgroundColor: '#ffffff',
-        }
-    }
-
-    if (design === 'shape') {
-        return {
-            ...(viewThemes() as object),
-            paddingTop: 'env(safe-area-inset-top)',
-            paddingBottom: 'calc(env(safe-area-inset-bottom) + 40px)',
-            paddingLeft: 'calc(env(safe-area-inset-left) + 14px)',
-            paddingRight: 'calc(env(safe-area-inset-right) + 14px)',
-
-            [MQ[2]]: { paddingBottom: 'calc(env(safe-area-inset-bottom) + 10px)' },
-        }
-    }
-}
+export { BottomNavigator }
 
 function NavTheme(design: 'default' | 'shape', maxWidth?: number): Interpolation<Theme> {
     const viewThemes = (): Interpolation<Theme> => {

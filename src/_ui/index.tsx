@@ -2,7 +2,7 @@
 import { AppBar } from './navigation/AppBar'
 import { Drawer } from './navigation/Drawer'
 import { DrawerAccordion } from './navigation/DrawerAccordion'
-import { BottomTabNavigator } from './navigation/BottomNavigationBar'
+import { BottomNavigator } from './navigation/BottomNavigator'
 
 //display
 import { BlurLayer } from './display/BlurLayer'
@@ -56,7 +56,7 @@ export {
     AppBar,
     Drawer,
     DrawerAccordion,
-    BottomTabNavigator,
+    BottomNavigator,
     Spacing,
     Divider,
     BlurLayer,
