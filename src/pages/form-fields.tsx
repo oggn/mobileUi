@@ -18,11 +18,7 @@ export default function FormFields() {
             <SEO title="가입하기 템플릿" description="Form 개발할때 다양한 인풋들을 사용해보세요!" />
 
             <V.Section>
-                <V.Container
-                    maxWidth={560}
-                    padding={{ top: 40, bottom: 20, horizontal: 20 }}
-                    css={{ [MQ[3]]: { paddingTop: 16, paddingBottom: 0 } }}
-                >
+                <V.Container maxWidth={560} padding={{ top: 40, bottom: 60, horizontal: 20 }}>
                     <Txt as="h1" size={24}>
                         {router.query.results
                             ? `최적화된 이미지\n위젯을 경험해봐요`

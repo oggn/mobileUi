@@ -17,7 +17,7 @@ export default function Comp2() {
                     alt="템플릿"
                     size={40}
                 />
-                <V.Column gap={3}>
+                <V.Column gap={3} align="start">
                     <Txt as="strong" size={17}>
                         위젯 템플릿
                     </Txt>
