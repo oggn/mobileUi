@@ -64,24 +64,28 @@ const BottomTabNavigatorBase: React.ForwardRefRenderFunction<HTMLDivElement, Pro
 
     if (childrenArray.length < 7) {
         return (
-            <P.BottomFixed height={design === 'shape' ? 100 : 70}>
+            <>
                 {design === 'shape' && (
-                    <V.Container align="center" padding={{ horizontal: 10 }} ref={ref}>
-                        <nav css={[NavTheme(design, maxWidth)]}>{childrenArray}</nav>
-                    </V.Container>
+                    <P.BottomFixed height={100}>
+                        <V.Container align="center" padding={{ horizontal: 10 }} ref={ref}>
+                            <nav css={[NavTheme(design, maxWidth)]}>{childrenArray}</nav>
+                        </V.Container>
+                    </P.BottomFixed>
                 )}
 
                 {design === 'default' && (
-                    <V.Container
-                        align="center"
-                        backgroundColor="#Fff"
-                        border={{ solid: 1, position: 'top', color: '#eee' }}
-                        ref={ref}
-                    >
-                        <nav css={[NavTheme(design, maxWidth)]}>{childrenArray}</nav>
-                    </V.Container>
+                    <P.BottomFixed height={70} backgroundColor="#fff">
+                        <V.Container
+                            align="center"
+                            backgroundColor="#Fff"
+                            border={{ solid: 1, position: 'top', color: '#eee' }}
+                            ref={ref}
+                        >
+                            <nav css={[NavTheme(design, maxWidth)]}>{childrenArray}</nav>
+                        </V.Container>
+                    </P.BottomFixed>
                 )}
-            </P.BottomFixed>
+            </>
         )
     }
 
