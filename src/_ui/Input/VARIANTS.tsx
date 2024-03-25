@@ -8,7 +8,7 @@ export function VARIANTS({ error, disabled, isFocused }: props) {
     const THEMES = {
         light: {
             label: '#8a8a8a',
-            tolTip: '#999',
+            tolTip: '#9A9DB4',
             solidColor: !error && isFocused ? '#b9d0e4' : '#e2e2e2' && error ? '#FF6767' : '#e2e2e2',
             color: disabled ? '#898989' : '#555',
             placeholder: '#ccc',
@@ -19,7 +19,7 @@ export function VARIANTS({ error, disabled, isFocused }: props) {
         },
         dark: {
             label: '#7a7a7a',
-            tolTip: '#888',
+            tolTip: '#9A9DB4',
             solidColor: !error && isFocused ? '#777' : '#444' && error ? '#FF6767' : '#444',
             color: disabled ? '#888' : '#bbb',
             placeholder: '#777',
