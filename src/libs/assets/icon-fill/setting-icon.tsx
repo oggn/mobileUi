@@ -1,4 +1,4 @@
-export default function SettingIcon({ size, fill, ...props }: AssetType) {
+export default function SettingIcon({ size = 22, fill = '#555', ...props }: AssetType) {
     return (
         <svg width={size} height={size} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <mask id="mask0_1_2814" maskUnits="userSpaceOnUse" x="0" y="0" width="22" height="23">

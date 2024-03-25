@@ -1,13 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, {
-    ChangeEvent,
-    ForwardedRef,
-    InputHTMLAttributes,
-    forwardRef,
-    useCallback,
-    useEffect,
-    useState,
-} from 'react'
+import React, { ChangeEvent, ForwardedRef, InputHTMLAttributes, forwardRef, useEffect, useState } from 'react'
 import { GlobalInputTheme } from '../_themes/input'
 import { V } from '@/_ui'
 
@@ -17,8 +9,18 @@ interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
     width?: number | string
     error?: boolean
     tolTip?: boolean | string
-
     inputSize?: number
+    handleFocus?: () => void
+    handleBlur?: () => void
+    THEME_VARIANTS?: {
+        light: { [key: string]: string }
+        dark: { [key: string]: string }
+    }
+    SIZE_VARIANTS?: {
+        s: { [key: string]: string }
+        m: { [key: string]: string }
+        l: { [key: string]: string }
+    }
 }
 
 const PhoneNumberField = forwardRef(
@@ -36,9 +38,7 @@ const PhoneNumberField = forwardRef(
         }: Props,
         ref: ForwardedRef<HTMLInputElement>,
     ) => {
-        const [isFocused, setIsFocused] = useState(false)
-        const handleFocus = useCallback(() => setIsFocused(true), [isFocused])
-        const handleBlur = useCallback(() => setIsFocused(false), [isFocused])
+        const { handleFocus, handleBlur, THEME_VARIANTS, SIZE_VARIANTS } = props
 
         const [internalValue, setInternalValue] = useState<string>(String(externalValue) || '')
 
@@ -74,54 +74,25 @@ const PhoneNumberField = forwardRef(
             }
         }
 
-        const THEME_VARIANTS = {
-            light: {
-                solidColor: !error && isFocused ? '#b9d0e4' : '#e2e2e2' && error ? '#FF6767' : '#e2e2e2',
-                color: disabled ? '#797979' : '#555',
-                placeholder: '#ccc',
-                activeColor: !error && isFocused ? '#f8f9fc' : '#fff',
-                edgeColor: '#999',
-                disabledColor: '#f4f4f4',
-            },
-            dark: {
-                solidColor: !error && isFocused ? '#777' : '#444' && error ? '#FF6767' : '#444',
-                color: disabled ? '#888' : '#bbb',
-                placeholder: '#777',
-                activeColor: !error && isFocused ? '#222' : 'transparent',
-                edgeColor: '#888',
-                disabledColor: '#101010',
-            },
-        } as const
-
-        const SIZE_VARIANTS = {
-            s: { width: 'auto', txtSize: '0.813em', height: 38, padding: 8, br: 10 },
-            m: {
-                width: '100%',
-                txtSize: '0.875em',
-                height: 44,
-                padding: '10px 11px',
-                br: 12,
-            },
-            l: { width: '100%', txtSize: '0.938em', height: 50, padding: 13, br: 14 },
-        } as const
-
         const inputT = GlobalInputTheme() as any
 
         return (
             <V.Column gap={6}>
                 <V.Row
-                    width={SIZE_VARIANTS[as].width}
+                    width={SIZE_VARIANTS?.[as].width as 'auto' | '100%'}
                     maxWidth={width}
                     align="center"
-                    minHeight={SIZE_VARIANTS[as].height}
-                    maxHeight={SIZE_VARIANTS[as].height}
+                    minHeight={SIZE_VARIANTS?.[as].height}
+                    maxHeight={SIZE_VARIANTS?.[as].height}
                     border={{
                         solid: 1,
                         position: 'all',
-                        color: THEME_VARIANTS[theme].solidColor,
+                        color: THEME_VARIANTS?.[theme].solidColor,
                     }}
-                    borderRadius={SIZE_VARIANTS[as].br}
-                    backgroundColor={disabled ? THEME_VARIANTS[theme].disabledColor : THEME_VARIANTS[theme].activeColor}
+                    borderRadius={SIZE_VARIANTS?.[as].br}
+                    backgroundColor={
+                        disabled ? THEME_VARIANTS?.[theme].disabledColor : THEME_VARIANTS?.[theme].activeColor
+                    }
                     transitionTime={0.5}
                 >
                     <input
@@ -136,17 +107,17 @@ const PhoneNumberField = forwardRef(
                         {...props}
                         css={{
                             ...inputT,
-                            width: SIZE_VARIANTS[as].width,
+                            width: SIZE_VARIANTS?.[as].width,
                             height: '100%',
-                            color: THEME_VARIANTS[theme].color,
-                            fontSize: SIZE_VARIANTS[as].txtSize,
-                            padding: SIZE_VARIANTS[as].padding,
+                            color: THEME_VARIANTS?.[theme].color,
+                            fontSize: SIZE_VARIANTS?.[as].txtSize,
+                            padding: SIZE_VARIANTS?.[as].padding,
                             outline: 'none',
                             border: 'none',
                             resize: 'none',
                             backgroundColor: 'transparent',
-                            borderRadius: SIZE_VARIANTS[as].br,
-                            '::placeholder': { color: THEME_VARIANTS[theme].placeholder },
+                            borderRadius: SIZE_VARIANTS?.[as].br,
+                            '::placeholder': { color: THEME_VARIANTS?.[theme].placeholder },
                         }}
                     />
                 </V.Row>

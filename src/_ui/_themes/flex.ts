@@ -2,7 +2,7 @@ export interface FlexType {
     flex?: number | string
     direction?: 'horizontal' | 'vertical' | 'horizontal-reverse' | 'vertical-reverse'
     align?: 'start' | 'end' | 'center' | 'stretch'
-    crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'end'
+    crossAlign?: 'start' | 'end' | 'center' | 'space-between' | 'space-around'
     alignContent?: 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly'
     wrap?: 'nowrap' | 'wrap' | 'wrap-reverse'
     basis?: number | string
@@ -33,19 +33,19 @@ export const FlexTheme = ({
         },
         vertical: {
             flexDirection: 'column' as const,
-            align: align ?? 'flex-start',
+            align: align ?? 'start',
             rowGap: gap,
             columnGap: crossGap,
         },
         'horizontal-reverse': {
-            flexDirection: 'row-reverse' as const,
+            flexDirection: 'row' as const,
             align: align ?? 'stretch',
             rowGap: crossGap,
             columnGap: gap,
         },
         'vertical-reverse': {
-            flexDirection: 'column-reverse' as const,
-            align: align ?? 'flex-start',
+            flexDirection: 'column' as const,
+            align: align ?? 'start',
             rowGap: gap,
             columnGap: crossGap,
         },

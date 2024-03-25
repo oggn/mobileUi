@@ -1,13 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, {
-    ForwardedRef,
-    ReactNode,
-    TextareaHTMLAttributes,
-    forwardRef,
-    useCallback,
-    useEffect,
-    useState,
-} from 'react'
+import React, { ForwardedRef, ReactNode, TextareaHTMLAttributes, forwardRef, useEffect } from 'react'
 import { GlobalInputTheme } from '../_themes/input'
 import { ScrollTheme, ScrollType } from '../_themes/scroll'
 import { TxtTab } from '../tab/TxtTab'
@@ -20,7 +12,6 @@ interface Props extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'
     error?: boolean
     errorMessage?: boolean | string
     tolTip?: string
-    edge?: ReactNode
     textCountActive?: boolean
     tab?: {
         onClick?: any
@@ -29,15 +20,18 @@ interface Props extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'
         color?: string
         disabled?: boolean
     }
+    handleFocus?: () => void
+    handleBlur?: () => void
+    THEME_VARIANTS?: {
+        light: { [key: string]: string }
+        dark: { [key: string]: string }
+    }
 }
 
 const Textarea = forwardRef((props: Props, ref: ForwardedRef<HTMLTextAreaElement>) => {
     const { value, disabled, autoRaise, scroll } = props
-    const { theme = 'light', error, tab, rows = 1, textCountActive, edge } = props
-
-    const [isFocused, setIsFocused] = useState(false)
-    const handleFocus = useCallback(() => setIsFocused(true), [isFocused])
-    const handleBlur = useCallback(() => setIsFocused(false), [isFocused])
+    const { theme = 'light', tab, rows = 1, textCountActive } = props
+    const { handleFocus, handleBlur, THEME_VARIANTS } = props
 
     useEffect(() => {
         const handleRasie = () => {
@@ -51,25 +45,6 @@ const Textarea = forwardRef((props: Props, ref: ForwardedRef<HTMLTextAreaElement
 
         if (autoRaise) handleRasie()
     }, [value, ref, autoRaise])
-
-    const VARIANTS = {
-        light: {
-            solidColor: !error && isFocused ? '#b9d0e4' : '#e2e2e2' && error ? '#FF6767' : '#e2e2e2',
-            color: disabled ? '#797979' : '#555',
-            placeholder: '#ccc',
-            activeColor: !error && isFocused ? '#f8f9fc' : '#fff',
-            edgeColor: '#999',
-            disabledColor: '#f8f8f8',
-        },
-        dark: {
-            solidColor: !error && isFocused ? '#777' : '#444' && error ? '#FF6767' : '#444',
-            color: disabled ? '#888' : '#bbb',
-            placeholder: '#777',
-            activeColor: !error && isFocused ? '#222' : 'transparent',
-            edgeColor: '#888',
-            disabledColor: '#101010',
-        },
-    } as const
 
     const inputT = GlobalInputTheme() as any
     const scrollT = ScrollTheme({
@@ -87,10 +62,10 @@ const Textarea = forwardRef((props: Props, ref: ForwardedRef<HTMLTextAreaElement
                 border={{
                     solid: 1,
                     position: 'all',
-                    color: VARIANTS[theme].solidColor,
+                    color: THEME_VARIANTS?.[theme].solidColor,
                 }}
                 borderRadius={14}
-                backgroundColor={disabled ? VARIANTS[theme].disabledColor : VARIANTS[theme].activeColor}
+                backgroundColor={disabled ? THEME_VARIANTS?.[theme].disabledColor : THEME_VARIANTS?.[theme].activeColor}
                 transitionTime={0.5}
             >
                 <textarea
@@ -103,14 +78,14 @@ const Textarea = forwardRef((props: Props, ref: ForwardedRef<HTMLTextAreaElement
                         ...scrollT,
                         width: '100%',
                         height: '100%',
-                        color: VARIANTS[theme].color,
+                        color: THEME_VARIANTS?.[theme].color,
                         padding: '13px',
                         fontSize: '0.938rem',
                         outline: 'none',
                         border: 'none',
                         backgroundColor: 'transparent',
                         resize: 'none',
-                        '::placeholder': { color: VARIANTS[theme].placeholder },
+                        '::placeholder': { color: THEME_VARIANTS?.[theme].placeholder },
                     }}
                     {...props}
                 />
@@ -139,12 +114,6 @@ const Textarea = forwardRef((props: Props, ref: ForwardedRef<HTMLTextAreaElement
                 <TxtSpan color="#999" size={12}>
                     {typeof props.value === 'string' ? props.value.length : 0}
                     {'/' + props.maxLength}
-                </TxtSpan>
-            )}
-
-            {!!edge && (
-                <TxtSpan padding={{ right: 10 }} color={VARIANTS[theme].edgeColor}>
-                    {edge}
                 </TxtSpan>
             )}
         </V.Column>

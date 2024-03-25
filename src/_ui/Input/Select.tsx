@@ -4,6 +4,7 @@ import { Option } from './Option'
 import { GlobalInputTheme } from '../_themes/input'
 import { Txt } from '../typography/Txt'
 import { P, V } from '@/_ui'
+import { VARIANTS } from './VARIANTS'
 
 interface Props extends SelectHTMLAttributes<HTMLSelectElement> {
     as?: 's' | 'm' | 'l'
@@ -26,55 +27,7 @@ const SelectComponent = forwardRef<HTMLSelectElement, Props>((props: Props, ref)
     const handleFocus = useCallback(() => setIsFocused(true), [isFocused])
     const handleBlur = useCallback(() => setIsFocused(false), [isFocused])
 
-    const THEME_VARIANTS = {
-        light: {
-            solidColor: !error && isFocused ? '#b9d0e4' : '#e2e2e2' && error ? '#FF6767' : '#e2e2e2',
-            color: disabled ? '#797979' : '#555',
-            placeholder: '#ccc',
-            activeColor: !error && isFocused ? '#f8f9fc' : '#fff',
-            edgeColor: '#999',
-            disabledColor: '#f4f4f4',
-            selectFill: '#d2d2d2',
-            tolTip: '#999',
-        },
-        dark: {
-            solidColor: !error && isFocused ? '#777' : '#444' && error ? '#FF6767' : '#444',
-            color: disabled ? '#888' : '#bbb',
-            placeholder: '#777',
-            activeColor: !error && isFocused ? '#222' : 'transparent',
-            edgeColor: '#888',
-            disabledColor: '#101010',
-            selectFill: '#555',
-            tolTip: '#888',
-        },
-    } as const
-
-    const SIZE_VARIANTS = {
-        s: {
-            width: 'auto',
-            txtSize: '0.813em',
-            height: 38,
-            padding: 8,
-            br: 10,
-            selectSize: 8,
-        },
-        m: {
-            width: '100%',
-            txtSize: '0.875em',
-            height: 44,
-            padding: '10px 11px',
-            br: 12,
-            selectSize: 8,
-        },
-        l: {
-            width: '100%',
-            txtSize: '0.938em',
-            height: 50,
-            padding: 13,
-            br: 14,
-            selectSize: 12,
-        },
-    } as const
+    const { THEMES: THEME_VARIANTS, SIZES: SIZE_VARIANTS, generateUUID } = VARIANTS({ error, disabled, isFocused })
 
     const inputT = GlobalInputTheme() as any
 
@@ -111,6 +64,7 @@ const SelectComponent = forwardRef<HTMLSelectElement, Props>((props: Props, ref)
                     ref={ref}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
+                    id={generateUUID()}
                     {...rest}
                     css={{
                         ...themes.select,

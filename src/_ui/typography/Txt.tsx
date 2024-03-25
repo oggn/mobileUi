@@ -28,7 +28,7 @@ export function Txt(props: Props) {
     const { as = 'p', color = '#444', size } = props
     const { weight, whiteSpace = 'pre-line', cursor, underline } = props
     const { ellipsis = { ellipsis: false } } = props
-    const { lineHeight, txtAlign } = props
+    const { lineHeight, txtAlign = 'start' } = props
     const { padding = { all: 0 }, margin = { all: 0 } } = props
 
     const TYPOGRAPH_WEIGHT = {

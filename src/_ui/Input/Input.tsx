@@ -1,11 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import React, { Children, HTMLAttributes, ReactElement, ReactNode, cloneElement, useId } from 'react'
+import React, { Children, HTMLAttributes, ReactElement, ReactNode, cloneElement, useCallback, useState } from 'react'
 import { Column } from '../flex/view/Column'
 import { Txt } from '../typography/Txt'
 import { TextField } from './TextField'
 import { Textarea } from './Textarea'
 import { PhoneNumberField } from './PhoneNumberField'
 import { NumbericField } from './NumbericField'
+import { VARIANTS } from './VARIANTS'
 
 interface InputProps extends HTMLAttributes<HTMLDivElement> {
     children: ReactElement
@@ -15,19 +16,21 @@ interface InputProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export function Input({ label, labelEdge, maxWidth, ...props }: InputProps) {
-    const useid = useId()
+    const [isFocused, setIsFocused] = useState(false)
+    const handleFocus = useCallback(() => setIsFocused(true), [isFocused])
+    const handleBlur = useCallback(() => setIsFocused(false), [isFocused])
 
     const child = Children.only(props.children)
-    const id = child.props.id ?? useid
+
     const error: boolean = child.props.error ?? false
     const errorMsg: string = child.props.errorMessage ?? undefined
     const tolTip: string = child.props.tolTip ?? undefined
     const theme: 'light' | 'dark' = child.props.theme ?? 'light'
+    const disabled: boolean = child.props.disabled ?? false
 
-    const VARIANTS = {
-        light: { tolTip: '#999' },
-        dark: { tolTip: '#888' },
-    }
+    const { THEMES: THEME_VARIANTS, SIZES: SIZE_VARIANTS, generateUUID } = VARIANTS({ error, disabled, isFocused })
+
+    const id = child.props.id ?? generateUUID()
 
     return (
         <Column maxWidth={maxWidth} {...props}>
@@ -35,7 +38,7 @@ export function Input({ label, labelEdge, maxWidth, ...props }: InputProps) {
                 <label
                     htmlFor={id}
                     css={{
-                        color: error ? '#F25757' : '#8a8a8a',
+                        color: error ? '#F25757' : THEME_VARIANTS[theme].label,
                         display: 'flex',
                         alignItems: 'center',
                         gap: 6,
@@ -51,6 +54,10 @@ export function Input({ label, labelEdge, maxWidth, ...props }: InputProps) {
 
             {cloneElement(child, {
                 id,
+                handleFocus,
+                handleBlur,
+                THEME_VARIANTS,
+                SIZE_VARIANTS,
                 ...child.props,
             })}
 
@@ -61,7 +68,7 @@ export function Input({ label, labelEdge, maxWidth, ...props }: InputProps) {
             )}
 
             {!!tolTip && !error && (
-                <Txt color={VARIANTS[theme].tolTip} size={13} margin={{ top: 6 }}>
+                <Txt color={THEME_VARIANTS[theme].tolTip} size={12} margin={{ top: 6 }}>
                     {tolTip}
                 </Txt>
             )}

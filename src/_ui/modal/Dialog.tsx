@@ -47,7 +47,7 @@ export function Dialog(props: Props) {
             {open && <BlurLayer />}
 
             <P.Fixed
-                zIndex={9999}
+                zIndex={10000}
                 align="center"
                 crossAlign="center"
                 width="100%"

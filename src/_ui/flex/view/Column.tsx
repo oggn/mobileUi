@@ -27,7 +27,7 @@ const Column = forwardRef((props: Props, ref: ForwardedRef<HTMLDivElement>) => {
     const FlexT = FlexTheme({
         flex: props.flex,
         direction: props.direction ?? 'vertical',
-        align: props.align,
+        align: props.align ?? 'start',
         crossAlign: props.crossAlign,
         wrap: props.wrap,
         gap: props.gap,

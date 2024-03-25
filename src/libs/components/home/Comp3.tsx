@@ -47,6 +47,7 @@ export default function Comp3() {
                             border={{ solid: 1, color: colors.chiffon400 }}
                             borderRadius={16}
                             gap={8}
+                            height="100%"
                         >
                             <Txt size={16} as="strong">
                                 {item.txt}

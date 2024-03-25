@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ToastIcon({ size, fill, ...props }: AssetType) {
+export default function ToastIcon({ size = 24, fill = '#555', ...props }: AssetType) {
     return (
         <svg width={size} height={size} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" {...props}>
             <g id="drawer-icon" transform="translate(-82 -14)">
