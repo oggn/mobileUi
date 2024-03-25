@@ -63,11 +63,6 @@ export function CalenderModal({
                     left: 0,
                 }}
                 transitionTime={0.3}
-                css={{
-                    [MQ[3]]: {
-                        justifyContent: 'flex-end',
-                    },
-                }}
             >
                 <V.Column
                     align="center"
@@ -75,20 +70,30 @@ export function CalenderModal({
                     gap={12}
                     css={{
                         [MQ[3]]: {
-                            height: dateFormat === 'yyyy-mm' ? '55%' : '65%',
+                            height: '100%',
+                            flexDirection: 'column-reverse',
+                            paddingTop: 50,
+                            alignItems: 'center',
+                            justifyContent: 'end',
                         },
                     }}
                 >
                     <V.Container
-                        padding={{ vertical: 10, horizontal: 0 }}
                         minWidth={300}
-                        maxWidth={380}
-                        borderRadius={18}
+                        maxWidth={400}
+                        borderRadius={24}
                         backgroundColor={THEME_VARIANT[theme].bg}
+                        padding={{ all: 5 }}
                         shadow={{ x: 0, y: 0, blur: 20, color: 'rgba(0,0,0,0.1)' }}
                         scroll={{ type: 'auto', bar: true }}
                         ref={ref}
-                        css={{}}
+                        css={{
+                            [MQ[3]]: {
+                                height: '100%',
+                                maxHeight: 500,
+                                borderRadius: '24px 24px 0 0',
+                            },
+                        }}
                     >
                         <StyledWrap>
                             <Calendar
@@ -343,7 +348,7 @@ function IconTheme({ onClick }: { onClick: () => void }) {
                 '&:active': { scale: 0.8 },
 
                 [MQ[3]]: {
-                    order: '1',
+                    order: '2',
                 },
             }}
         >

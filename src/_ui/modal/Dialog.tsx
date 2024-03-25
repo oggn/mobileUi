@@ -65,6 +65,7 @@ export function Dialog(props: Props) {
                     maxWidth={dialogSizes}
                     minWidth={320}
                     padding={{ horizontal: 18, top: 26, bottom: 16 }}
+                    align="start"
                     borderRadius={20}
                     backgroundColor={THEME_VARIANT[theme].bg}
                     ref={ref}

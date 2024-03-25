@@ -54,7 +54,7 @@ export default function Comp4() {
 
             {/* 바텀시트 모달 */}
             <BottomSheet open={isOpen === 'bottomSheet'} onCancel={() => setIsOpen(false)}>
-                <V.Column gap={10} padding={{ vertical: 16, horizontal: 20 }}>
+                <V.Column align="start" gap={10} padding={{ vertical: 16, horizontal: 20 }}>
                     <Txt as="h6" size={18}>
                         바텀 시트
                     </Txt>
@@ -63,7 +63,7 @@ export default function Comp4() {
                             'IOS에서 영감을 받은 BottomSheet 모달 위젯이에요!\n바텀 시트는 모바일에서 위에서 아래로 터치를 통해 닫을 수도 있어요!'
                         }
                     </Txt>
-                    <Button margin={{ top: 10 }} onClick={() => setIsOpen(false)}>
+                    <Button width="100%" margin={{ top: 10 }} onClick={() => setIsOpen(false)}>
                         확인완료
                     </Button>
                 </V.Column>
