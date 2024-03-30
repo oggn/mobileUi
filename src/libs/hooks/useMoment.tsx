@@ -1,10 +1,18 @@
-import React from 'react'
-
 export function useMoment(dateParam: string | Date) {
     const date = new Date(dateParam)
 
     return {
-        format: (typeParam: 'yyyy.mm' | 'yyyy.mm.dd' | 'yyyy-mm' | 'yyyy-mm-dd') => {
+        format: (
+            typeParam:
+                | 'yyyy'
+                | 'yyyy.mm'
+                | 'yyyy.mm.dd'
+                | 'yyyy-mm'
+                | 'yyyy-mm-dd'
+                | 'yyyy년'
+                | 'yyyy년mm월'
+                | 'yyyy년mm월dd일',
+        ) => {
             const type = typeParam ?? 'yyyy.mm.dd'
 
             const year = date.getFullYear()
@@ -13,6 +21,10 @@ export function useMoment(dateParam: string | Date) {
 
             const formattedMonth = month >= 10 ? month : `0${month}`
             const formattedDay = day >= 10 ? day : `0${day}`
+
+            if (type === 'yyyy') {
+                return `${year}`
+            }
 
             if (type === 'yyyy.mm') {
                 return `${year}.${formattedMonth}`
@@ -28,6 +40,18 @@ export function useMoment(dateParam: string | Date) {
 
             if (type === 'yyyy-mm-dd') {
                 return `${year}-${formattedMonth}-${formattedDay}`
+            }
+
+            if (type === 'yyyy년') {
+                return `${year}년`
+            }
+
+            if (type === 'yyyy년mm월') {
+                return `${year}년 ${formattedMonth}월`
+            }
+
+            if (type === 'yyyy년mm월dd일') {
+                return `${year}년 ${formattedMonth}월 ${formattedDay}일`
             }
         },
 

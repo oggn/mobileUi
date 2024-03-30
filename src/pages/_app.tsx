@@ -8,8 +8,8 @@ import { dehydrate, Hydrate, QueryClient, QueryClientProvider } from '@tanstack/
 import { JengaProvider } from '@/_ui/JengaProvider'
 
 //libs
-import '@/styles/globals.css'
 import App from '@/libs/view/App'
+import GlobalThemes from '@/libs/themes/global'
 
 //
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -21,11 +21,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             <Hydrate state={dehydratedState}>
                 <SessionProvider session={pageProps.session} basePath="/api/auth">
                     <RecoilRoot>
-                        <JengaProvider>
-                            <App>
-                                <Component {...pageProps} />
-                            </App>
-                        </JengaProvider>
+                        <GlobalThemes>
+                            <JengaProvider>
+                                <App>
+                                    <Component {...pageProps} />
+                                </App>
+                            </JengaProvider>
+                        </GlobalThemes>
                     </RecoilRoot>
                 </SessionProvider>
             </Hydrate>

@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import React, { memo } from 'react'
 
-export const BlurLayer = memo(() => {
+export const BlurLayer = memo(({ zIndex }: { zIndex?: number }) => {
     return (
         <div
             css={{
-                zIndex: 9900,
+                zIndex: zIndex ?? 9900,
                 display: 'flex',
                 flex: 1,
                 width: '100%',

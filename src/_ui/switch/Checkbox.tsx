@@ -1,8 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, InputHTMLAttributes, forwardRef, useId, useState } from 'react'
+
 import { colors } from '../../libs/themes/colors'
 import { Txt } from '../typography/Txt'
-import { V } from '@/_ui'
+import { Row } from '../flex/view/Row'
+import { Column } from '../flex/view/Column'
 
 //
 interface CheckProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -23,9 +25,9 @@ interface CheckProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>
 }
 
 export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: ForwardedRef<HTMLInputElement>) {
-    const uid = useId()
+    const uid = generateUUID()
 
-    const { id = 'check', type = 'checkbox', disabled, theme = 'light', checkSize = 16, label } = props
+    const { id, type = 'checkbox', disabled, theme = 'light', checkSize = 16, label } = props
     const [hover, setHover] = useState(false)
 
     const VARIANTS = {
@@ -48,7 +50,7 @@ export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: For
     } as const
 
     return (
-        <V.Row align="start" gap={3} width="auto">
+        <Row align="start" gap={3} width="auto">
             <label
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
@@ -93,7 +95,7 @@ export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: For
             </label>
 
             {!!label && (
-                <V.Column gap={4}>
+                <Column gap={4}>
                     <label
                         htmlFor={id ?? uid}
                         onMouseEnter={() => setHover(true)}
@@ -120,9 +122,9 @@ export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: For
                     >
                         {label.txt}
                     </Txt>
-                </V.Column>
+                </Column>
             )}
-        </V.Row>
+        </Row>
     )
 })
 
@@ -179,4 +181,14 @@ const CheckTheme: any = {
         borderRadius: '5px',
         cursor: 'default',
     },
+}
+
+const generateUUID = () => {
+    let dt = new Date().getTime()
+    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        const r = (dt + Math.random() * 16) % 16 | 0
+        dt = Math.floor(dt / 16)
+        return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16)
+    })
+    return uuid
 }

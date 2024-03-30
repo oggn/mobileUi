@@ -13,11 +13,11 @@ interface InputProps extends HTMLAttributes<HTMLDivElement> {
     label?: ReactNode
     labelEdge?: string
     maxWidth?: number
+    important?: boolean
 }
 
 export function Input({ label, labelEdge, maxWidth, ...props }: InputProps) {
     const child = Children.only(props.children)
-
     const error: boolean = child.props.error ?? false
     const errorMsg: string = child.props.errorMessage ?? undefined
     const tolTip: string = child.props.tolTip ?? undefined
@@ -40,14 +40,15 @@ export function Input({ label, labelEdge, maxWidth, ...props }: InputProps) {
                         color: error ? '#F25757' : THEME_VARIANTS[theme].label,
                         display: 'flex',
                         alignItems: 'center',
-                        gap: 6,
+                        gap: 3,
                         fontSize: '0.75rem',
-                        marginBottom: '4px',
+                        marginBottom: '6px',
 
                         '&:focus-within': { fontWeight: 500 },
                     }}
                 >
                     {label}
+                    {props?.important && <span css={{ color: '#f25757', fontWeight: 500 }}>*</span>}
                 </label>
             )}
 
@@ -57,13 +58,13 @@ export function Input({ label, labelEdge, maxWidth, ...props }: InputProps) {
             })}
 
             {error && (
-                <Txt color="#F25757" size={12} margin={{ top: 6 }}>
+                <Txt color="#F25757" size={13} margin={{ top: 6 }}>
                     {errorMsg}
                 </Txt>
             )}
 
             {!!tolTip && !error && (
-                <Txt color={THEME_VARIANTS[theme].tolTip} size={12} margin={{ top: 6 }}>
+                <Txt color={THEME_VARIANTS[theme].tolTip} size={13} margin={{ top: 6 }}>
                     {tolTip}
                 </Txt>
             )}

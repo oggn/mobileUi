@@ -1,20 +1,28 @@
-import { useRouter } from 'next/router';
-import React, { EventHandler, useEffect } from 'react';
+import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
 
-export function useRouteOnload(handleOnLoad: EventHandler<any>) {
-  const router = useRouter();
+interface RouteChangeEventArgs {
+    shallow: boolean
+}
 
-  useEffect(() => {
-    router.events.on('routeChangeStart', handleOnLoad);
-    return () => {
-      router.events.off('routeChangeStart', handleOnLoad);
-    };
-  }, [handleOnLoad, router.events]);
+export function useRouteOnload(handleOnLoad: () => void): void {
+    const router = useRouter()
 
-  useEffect(() => {
-    router.events.on('routeChangeComplete', handleOnLoad);
-    return () => {
-      router.events.off('routeChangeComplete', handleOnLoad);
-    };
-  }, [handleOnLoad, router.events]);
+    const handleRouteChangeComplete = (url: string, { shallow }: RouteChangeEventArgs) => {
+        if (!shallow) handleOnLoad()
+    }
+
+    useEffect(() => {
+        router.events.on('routeChangeStart', handleRouteChangeComplete)
+        return () => {
+            router.events.off('routeChangeStart', handleRouteChangeComplete)
+        }
+    }, [router.events])
+
+    useEffect(() => {
+        router.events.on('routeChangeComplete', handleRouteChangeComplete)
+        return () => {
+            router.events.off('routeChangeComplete', handleRouteChangeComplete)
+        }
+    }, [router.events])
 }

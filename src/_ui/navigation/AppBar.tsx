@@ -43,7 +43,7 @@ export const AppBar = forwardRef(
                 <header
                     ref={ref}
                     css={{
-                        zIndex: 8000,
+                        zIndex: 1000,
                         width: '100%',
                         height: '100%',
                         minHeight: 60,

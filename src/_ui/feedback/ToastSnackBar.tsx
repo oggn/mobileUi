@@ -43,6 +43,7 @@ export function ToastSnackBar({
                 transition: '0.3s ease-in-out',
                 display: 'flex',
                 columnGap: 8,
+                zIndex: 999999,
             }}
         >
             {status === 'success' && (

@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { ForwardedRef, InputHTMLAttributes, forwardRef, useCallback, useState } from 'react'
+import React, { ForwardedRef, InputHTMLAttributes, ReactNode, forwardRef, useCallback, useState } from 'react'
 import { GlobalInputTheme } from '../_themes/input'
 import { TxtTab } from '../tab/TxtTab'
 import { V } from '@/_ui'
@@ -20,11 +20,12 @@ interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
         color?: string
         disabled?: boolean
     }
+    edge?: ReactNode
 }
 
 const TextField = forwardRef((props: Props, ref: ForwardedRef<HTMLInputElement>) => {
     const { theme = 'light', as = 'l', width = '100%' } = props
-    const { disabled, tab, error } = props
+    const { disabled, tab, error, edge } = props
 
     const [isFocused, setIsFocused] = useState(false)
     const handleFocus = useCallback(() => setIsFocused(true), [isFocused])
@@ -90,7 +91,7 @@ const TextField = forwardRef((props: Props, ref: ForwardedRef<HTMLInputElement>)
                     }}
                 />
 
-                {!!tab && (
+                {!!tab && !edge && (
                     <TxtTab
                         color={tab.color ?? '#4788f4'}
                         size={tab.size ?? 14}
@@ -107,6 +108,19 @@ const TextField = forwardRef((props: Props, ref: ForwardedRef<HTMLInputElement>)
                     >
                         {tab.name ?? '확인'}
                     </TxtTab>
+                )}
+
+                {!!edge && !tab && (
+                    <div
+                        css={{
+                            padding: '10px 10px 10px 6px',
+                            fontSize: 13,
+                            color: '#999',
+                            whiteSpace: 'nowrap',
+                        }}
+                    >
+                        {edge}
+                    </div>
                 )}
             </V.Row>
         </V.Column>

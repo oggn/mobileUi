@@ -39,7 +39,7 @@ export function BottomFixed(props: Props) {
             }}
         >
             <Fixed
-                zIndex={props.zIndex ?? 9000}
+                zIndex={props.zIndex ?? 1000}
                 minHeight={props.height ?? 60}
                 maxHeight={props.height ?? 60}
                 height="100%"

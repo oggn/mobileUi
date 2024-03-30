@@ -16,12 +16,14 @@ interface Props extends SelectHTMLAttributes<HTMLSelectElement> {
     error?: boolean
     errorMessage?: boolean | string
     tolTip?: string
+    important?: boolean
+    placeholder?: string
 }
 
 const SelectComponent = forwardRef<HTMLSelectElement, Props>((props: Props, ref) => {
     const { options, renderItem, ...rest } = props
     const { theme = 'light', as = 'l', width = '100%' } = props
-    const { error, errorMessage, tolTip, disabled, label } = props
+    const { error, errorMessage, tolTip, disabled, label, placeholder } = props
 
     const [isFocused, setIsFocused] = useState(false)
     const handleFocus = useCallback(() => setIsFocused(true), [isFocused])
@@ -35,12 +37,14 @@ const SelectComponent = forwardRef<HTMLSelectElement, Props>((props: Props, ref)
         <V.Column>
             {label && (
                 <label
+                    htmlFor={generateUUID()}
                     css={{
                         ...themes.label,
                         color: error ? '#F25757' : '#8a8a8a',
                     }}
                 >
                     {label}
+                    {props?.important && <span css={{ color: '#f25757', fontWeight: 500 }}>*</span>}
                 </label>
             )}
 
@@ -78,6 +82,11 @@ const SelectComponent = forwardRef<HTMLSelectElement, Props>((props: Props, ref)
                         '::placeholder': { color: THEME_VARIANTS[theme].placeholder },
                     }}
                 >
+                    {!props.value && !!placeholder && (
+                        <option value="" disabled>
+                            {placeholder}
+                        </option>
+                    )}
                     {options?.map((item, index) => renderItem(item, index)).flat()}
                 </select>
 
@@ -87,7 +96,7 @@ const SelectComponent = forwardRef<HTMLSelectElement, Props>((props: Props, ref)
             </V.Row>
 
             {error && (
-                <Txt color="#F25757" size={12} margin={{ top: 6 }}>
+                <Txt color="#F25757" size={13} margin={{ top: 6 }}>
                     {errorMessage}
                 </Txt>
             )}
@@ -115,9 +124,9 @@ const themes = {
     label: {
         display: 'flex',
         alignItems: 'center',
-        gap: 6,
+        gap: 3,
         fontSize: '0.75rem',
-        marginBottom: '4px',
+        marginBottom: '6px',
         '&:focus-within': { fontWeight: 500 },
     },
     select: {
@@ -140,8 +149,11 @@ const themes = {
 const SelectIcon = ({ fill, size }: { fill: string; size: number }) => {
     return (
         <div css={{ display: 'flex', alignItems: 'center' }}>
-            <svg width={size} viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.5 10L0.00481023 0.249999L12.9952 0.25L6.5 10Z" fill={fill} />
+            <svg width={size} height={size} viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M5.53775 7.85469C5.2579 8.19052 4.7421 8.19052 4.46225 7.85469L0.956773 3.64813C0.576833 3.1922 0.901043 2.5 1.49453 2.5L8.50547 2.5C9.09896 2.5 9.42317 3.1922 9.04323 3.64813L5.53775 7.85469Z"
+                    fill={fill}
+                />
             </svg>
         </div>
     )

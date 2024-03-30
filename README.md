@@ -191,6 +191,10 @@ V2 버전으로 업데이트 되었으며, 모든 위젯이 업데이트 및 최
 
 -   useIntersectionObserver : 무한 스크롤 기능을 사용할 때 사용되는 옵저버 훅입니다.
 
+-   useUid : 특정 자릿 수의 고유 id 값을 string 타입으로 생성할 수 있습니다.
+
+-   useTanstackQuery : Tanstack-Query 라이브러리 hook을 관리합니다.
+
 ---
 
 ## Site-map
