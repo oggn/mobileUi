@@ -73,8 +73,8 @@ export default function Comp4() {
             <CalenderModal
                 open={isOpen === 'calenderModal'}
                 onCancel={() => setIsOpen(false)}
-                value={isDate ? isDate : new Date()}
-                onChange={(date: any) => {
+                date={isDate ? isDate : new Date()}
+                onClick={(date: any) => {
                     setIsOpen(false)
                     setIsDate(date)
                 }}

@@ -50,6 +50,9 @@ import { BottomSheet } from './modal/BottomSheet'
 import { CalenderModal } from './modal/CalenderModal'
 import { useJenga } from './JengaProvider'
 
+//calneder
+import { Calendar } from './calender/Calender'
+
 console.error = () => {}
 
 export {
@@ -83,4 +86,5 @@ export {
     Image,
     TouchableOpacity,
     useJenga,
+    Calendar,
 }

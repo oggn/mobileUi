@@ -4,6 +4,7 @@ import { NextRouter, useRouter } from 'next/router'
 // Components
 import Header from './Header'
 import BottomNaviTabBar from './BottomNaviTabBar'
+import { css } from '@emotion/react'
 
 //
 export default function App({ children }: { children: ReactNode }): JSX.Element {
@@ -13,10 +14,34 @@ export default function App({ children }: { children: ReactNode }): JSX.Element 
     const noneView = router.pathname === '/form-fields'
 
     return (
-        <div id="layout">
+        <div id="layout" css={themes.layout}>
             {!errPath && <Header />}
-            <main>{children}</main>
+            <main css={themes.main}>{children}</main>
             {!(errPath || noneView) && <BottomNaviTabBar />}
         </div>
     )
+}
+
+//
+//
+const themes = {
+    layout: css`
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1 auto;
+    `,
+
+    main: css`
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+    `,
 }

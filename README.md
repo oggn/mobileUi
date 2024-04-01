@@ -45,7 +45,6 @@ V2 버전으로 업데이트 되었으며, 모든 위젯이 업데이트 및 최
 -   sharp: 0.33.2
 -   plaiceholder: 3.0.0
 -   react-cookie : 7.0.2
--   react-calender : 4.8.0
 -   react-image-cached-resizer : 1.3.4 (자체 배포/개발 패키지)
 -   react-flatlist-ui : 1.4.1 (자체 배포/개발 패키지)
 
@@ -152,6 +151,10 @@ V2 버전으로 업데이트 되었으며, 모든 위젯이 업데이트 및 최
 -   Dialog : Dialog 타입의 모달 팝업
 -   BottomSheet : BottomSheet 타입의 IOS 모달
 -   CalenderModal : 달력 사용 가능 형태의 모달 위젯
+
+**Calender**
+
+-   Calender : yyyy / yyyy-mm / yyyy-mm-dd 포맷을 제공하는 달력 UI 위젯
 
 ---
 

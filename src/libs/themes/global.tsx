@@ -1,6 +1,9 @@
-import { Global, css } from '@emotion/react'
 import { ReactNode } from 'react'
+import { JengaProvider } from '@/_ui/JengaProvider'
+import { Global, css } from '@emotion/react'
 
+//
+//
 export default function GlobalThemes({ children }: { children?: ReactNode }): JSX.Element {
     return (
         <>
@@ -52,26 +55,6 @@ export default function GlobalThemes({ children }: { children?: ReactNode }): JS
                         body #layout {
                             min-height: -webkit-fill-available;
                         }
-                    }
-
-                    #layout {
-                        position: relative;
-                        width: 100%;
-                        height: 100%;
-                        min-height: 100vh;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        flex: 1 auto;
-                    }
-
-                    main {
-                        width: 100%;
-                        height: 100%;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        flex: 1;
                     }
 
                     strong,
@@ -174,7 +157,7 @@ export default function GlobalThemes({ children }: { children?: ReactNode }): JS
                 `}
             />
 
-            {children}
+            <JengaProvider>{children}</JengaProvider>
         </>
     )
 }

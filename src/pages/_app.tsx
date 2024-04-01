@@ -5,7 +5,6 @@ import { useState } from 'react'
 import { SessionProvider } from 'next-auth/react'
 import { RecoilRoot } from 'recoil'
 import { dehydrate, Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { JengaProvider } from '@/_ui/JengaProvider'
 
 //libs
 import App from '@/libs/view/App'
@@ -22,11 +21,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                 <SessionProvider session={pageProps.session} basePath="/api/auth">
                     <RecoilRoot>
                         <GlobalThemes>
-                            <JengaProvider>
-                                <App>
-                                    <Component {...pageProps} />
-                                </App>
-                            </JengaProvider>
+                            <App>
+                                <Component {...pageProps} />
+                            </App>
                         </GlobalThemes>
                     </RecoilRoot>
                 </SessionProvider>

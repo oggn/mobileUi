@@ -64,11 +64,10 @@ export function JengaProvider({ children }: { children: ReactNode }) {
 }
 
 const toastTheme = {
-    width: '100%',
     position: 'fixed',
     top: 0,
-    left: 0,
-    right: 0,
+    left: '50%',
+    transform: 'translateX(-50%)',
     padding: '32px 16px',
     zIndex: 10000,
     transition: '0.3s ease-in-out',
