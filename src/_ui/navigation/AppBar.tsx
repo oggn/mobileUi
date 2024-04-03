@@ -7,13 +7,11 @@ interface Props {
     theme?: 'light' | 'dark'
     width?: number
     backgroundColor?: string
+    borderBottom?: string
 }
 
 export const AppBar = forwardRef(
-    (
-        { children, serviceName, theme = 'light', width, backgroundColor, ...props }: Props,
-        ref?: ForwardedRef<HTMLDivElement>,
-    ) => {
+    ({ children, serviceName, theme = 'light', width, ...props }: Props, ref?: ForwardedRef<HTMLDivElement>) => {
         const [isActive, setIsActive] = useState<boolean>(false)
 
         useEffect(() => {
@@ -58,8 +56,8 @@ export const AppBar = forwardRef(
                         paddingTop: 'env(safe-area-inset-top)',
                         paddingRight: 'env(safe-area-inset-right)',
                         paddingLeft: 'env(safe-area-inset-left)',
-                        backgroundColor: backgroundColor ?? TYPE_VARIANTS[theme].backgroundColor,
-                        borderBottom: isActive ? `1px solid ${TYPE_VARIANTS[theme].color}` : '',
+                        backgroundColor: props?.backgroundColor ?? TYPE_VARIANTS[theme].backgroundColor,
+                        borderBottom: props?.borderBottom ?? isActive ? `1px solid ${TYPE_VARIANTS[theme].color}` : '',
                     }}
                     {...props}
                 >

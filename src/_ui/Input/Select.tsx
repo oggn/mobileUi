@@ -1,10 +1,28 @@
 /** @jsxImportSource @emotion/react */
-import React, { ReactElement, SelectHTMLAttributes, forwardRef, useCallback, useState } from 'react'
+import React, { ReactElement, SelectHTMLAttributes, forwardRef, useCallback, useId, useState } from 'react'
 import { Option } from './Option'
-import { GlobalInputTheme } from '../_themes/input'
 import { Txt } from '../typography/Txt'
 import { P, V } from '@/_ui'
-import { VARIANTS } from './VARIANTS'
+import { InputBox, InputTheme, Label } from './themes'
+
+type SizeProps = {
+    width?: string | number | '100%' | '50%'
+    height?: string | number | '100%'
+    borderRadius?: string | number
+    padding?: string | number
+    txtSize?: number | string
+    edgeSize?: number | string
+    tolTipSize?: number
+    errorMsgSize?: number
+}
+
+type ThemeProps = {
+    backgroundColor?: string
+    borderColor?: string
+    txtColor?: string
+    edgeColor?: string
+    placeholderColor?: string
+}
 
 interface Props extends SelectHTMLAttributes<HTMLSelectElement> {
     as?: 's' | 'm' | 'l'
@@ -13,96 +31,87 @@ interface Props extends SelectHTMLAttributes<HTMLSelectElement> {
     options: any[]
     width?: number
     label?: string
+    labelSize?: string
+    important?: any
     error?: boolean
     errorMessage?: boolean | string
     tolTip?: string
-    important?: boolean
     placeholder?: string
+    sizes?: SizeProps | undefined
+    selectIconColor?: string
+    selectIconSize?: number
+    themes?: {
+        default?: (ThemeProps & { tolTipColor?: string }) | undefined
+        error?: (ThemeProps & { errorMsgColor?: string }) | undefined
+        disabled?: ThemeProps | undefined
+        focus?: ThemeProps | undefined
+    }
 }
 
 const SelectComponent = forwardRef<HTMLSelectElement, Props>((props: Props, ref) => {
     const { options, renderItem, ...rest } = props
-    const { theme = 'light', as = 'l', width = '100%' } = props
-    const { error, errorMessage, tolTip, disabled, label, placeholder } = props
+
+    const { error, errorMessage, tolTip, disabled, label, placeholder, themes, sizes } = props
 
     const [isFocused, setIsFocused] = useState(false)
     const handleFocus = useCallback(() => setIsFocused(true), [isFocused])
     const handleBlur = useCallback(() => setIsFocused(false), [isFocused])
 
-    const { THEMES: THEME_VARIANTS, SIZES: SIZE_VARIANTS, generateUUID } = VARIANTS({ error, disabled, isFocused })
-
-    const inputT = GlobalInputTheme() as any
+    const systems = { themes, focus: isFocused, error, disabled, sizes }
 
     return (
         <V.Column>
             {label && (
-                <label
-                    htmlFor={generateUUID()}
-                    css={{
-                        ...themes.label,
-                        color: error ? '#F25757' : '#8a8a8a',
-                    }}
+                <Label
+                    htmlFor={props.id}
+                    labelSize={props.labelSize as any}
+                    error={error ?? false}
+                    themes={themes}
+                    important={props?.important ?? false}
                 >
                     {label}
-                    {props?.important && <span css={{ color: '#f25757', fontWeight: 500 }}>*</span>}
-                </label>
+                </Label>
             )}
 
-            <V.Row
-                width={SIZE_VARIANTS[as].width}
-                maxWidth={width}
-                align="center"
-                gap={6}
-                minHeight={SIZE_VARIANTS[as].height}
-                maxHeight={SIZE_VARIANTS[as].height}
-                border={{
-                    solid: 1,
-                    position: 'all',
-                    color: THEME_VARIANTS[theme].solidColor,
-                }}
-                borderRadius={SIZE_VARIANTS[as].br}
-                backgroundColor={disabled ? THEME_VARIANTS[theme].disabledColor : THEME_VARIANTS[theme].activeColor}
-                transitionTime={0.5}
-            >
+            <InputBox themes={themes as any} sizes={sizes} focus={isFocused} error={error} disabled={disabled}>
                 <select
                     ref={ref}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
-                    id={generateUUID()}
+                    id={props.id ?? useId()}
                     {...rest}
-                    css={{
-                        ...themes.select,
-                        ...inputT,
-                        width: SIZE_VARIANTS[as].width,
-                        color: THEME_VARIANTS[theme].color,
-                        fontSize: SIZE_VARIANTS[as].txtSize,
-                        padding: SIZE_VARIANTS[as].padding,
-                        paddingRight: as === 'l' ? 10 : 8,
-                        borderRadius: SIZE_VARIANTS[as].br,
-                        '::placeholder': { color: THEME_VARIANTS[theme].placeholder },
-                    }}
+                    css={[InputTheme(systems as any), { cursor: 'pointer' }]}
                 >
                     {!props.value && !!placeholder && (
                         <option value="" disabled>
                             {placeholder}
                         </option>
                     )}
+
                     {options?.map((item, index) => renderItem(item, index)).flat()}
                 </select>
 
-                <P.Absolute position={{ right: 8 }}>
-                    <SelectIcon size={SIZE_VARIANTS[as].selectSize} fill={THEME_VARIANTS[theme].selectFill} />
+                <P.Absolute position={{ right: 10 }}>
+                    <SelectIcon size={props?.selectIconSize ?? 11} fill={props?.selectIconColor ?? '#ccc'} />
                 </P.Absolute>
-            </V.Row>
+            </InputBox>
 
             {error && (
-                <Txt color="#F25757" size={13} margin={{ top: 6 }}>
+                <Txt
+                    color={themes?.error?.errorMsgColor ?? '#FF6767'}
+                    size={sizes?.errorMsgSize ?? 13}
+                    margin={{ top: 6 }}
+                >
                     {errorMessage}
                 </Txt>
             )}
 
             {!!tolTip && !error && (
-                <Txt color={THEME_VARIANTS[theme].tolTip} size={13} margin={{ top: 6 }}>
+                <Txt
+                    color={themes?.default?.tolTipColor ?? '#939EAB'}
+                    size={sizes?.tolTipSize ?? 13}
+                    margin={{ top: 6 }}
+                >
                     {tolTip}
                 </Txt>
             )}
@@ -118,33 +127,6 @@ const Select = SelectComponent as SelectWithOption
 Select.Option = Option
 
 export { Select }
-
-// themes
-const themes = {
-    label: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: 3,
-        fontSize: '0.75rem',
-        marginBottom: '6px',
-        '&:focus-within': { fontWeight: 500 },
-    },
-    select: {
-        height: '100%',
-        outline: 'none',
-        border: 'none',
-        font: 'inherit',
-        WebkitBoxSizing: 'border-box',
-        MozBoxSizing: 'border-box',
-        boxSizing: 'border-box',
-        appearance: 'none',
-        WebkitAppearance: 'none',
-        MozAppearance: 'none',
-        backgroundRepeat: 'no-repeat',
-        backgroundColor: 'transparent !important',
-        cursor: 'pointer',
-    },
-} as any
 
 const SelectIcon = ({ fill, size }: { fill: string; size: number }) => {
     return (

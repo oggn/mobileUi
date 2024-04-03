@@ -49,11 +49,10 @@ export default function CheckBoxs({
                 onChange={() => handleCheckOnChange('check1')}
                 label={{
                     title: '이용약관 (필수)',
-                    titleWeight: 'medium',
                     txt: '서비스 이용약관에 동의합니다. (자세히 보기📎)',
-                    txtSize: 13,
                     txtOnClick: () => modalQueryRouter('이용약관'),
                 }}
+                themes={{ label: { titleSize: 14, titleWeight: 'medium' } }}
             />
 
             {/* ----- 개인정보 처리방침 ----- */}
@@ -63,11 +62,10 @@ export default function CheckBoxs({
                 onChange={() => handleCheckOnChange('check2')}
                 label={{
                     title: '개인정보 처리방침 (필수)',
-                    titleWeight: 'medium',
                     txt: '개인정보 처리방침에 동의합니다. (자세히 보기📎)',
-                    txtSize: 13,
                     txtOnClick: () => modalQueryRouter('이용약관'),
                 }}
+                themes={{ label: { titleSize: 14, titleWeight: 'medium' } }}
             />
 
             {/* ----- 마케팅 수신동의 ----- */}
@@ -82,10 +80,9 @@ export default function CheckBoxs({
                 }}
                 label={{
                     title: '마케팅 수신동의',
-                    titleWeight: 'medium',
-                    txt: '       이벤트 및 마케팅 소식을 알려드릴게요',
-                    txtSize: 13,
+                    txt: '이벤트 및 마케팅 소식을 알려드릴게요',
                 }}
+                themes={{ label: { titleSize: 14, titleWeight: 'medium' } }}
             />
         </V.Container>
     )

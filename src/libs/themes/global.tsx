@@ -125,7 +125,6 @@ export default function GlobalThemes({ children }: { children?: ReactNode }): JS
                         outline: none;
                         text-decoration: none;
                         background-color: transparent;
-                        border-radius: 0;
                         resize: none;
                     }
 

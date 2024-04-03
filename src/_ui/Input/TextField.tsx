@@ -1,39 +1,53 @@
 /** @jsxImportSource @emotion/react */
-import React, { ForwardedRef, InputHTMLAttributes, ReactNode, forwardRef, useCallback, useState } from 'react'
-import { GlobalInputTheme } from '../_themes/input'
+import React, { ForwardedRef, InputHTMLAttributes, ReactNode, forwardRef, useCallback, useId, useState } from 'react'
 import { TxtTab } from '../tab/TxtTab'
 import { V } from '@/_ui'
-import { VARIANTS } from './VARIANTS'
+import { InputBox, InputEdgeColorTheme, InputTheme } from './themes'
+
+type TabProps = { onClick?: any; name: string; size?: number; color?: string; disabled?: boolean }
+
+type SizeProps = {
+    width?: string | number | '100%' | '50%'
+    height?: string | number | '100%'
+    borderRadius?: string | number
+    padding?: string | number
+    txtSize?: number | string
+    edgeSize?: number | string
+    tolTipSize?: number
+    errorMsgSize?: number
+}
+
+type ThemeProps = {
+    backgroundColor?: string
+    borderColor?: string
+    txtColor?: string
+    edgeColor?: string
+    placeholderColor?: string
+}
 
 interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
-    as?: 's' | 'm' | 'l'
-    theme?: 'light' | 'dark'
-    width?: number | string
     error?: boolean
     errorMessage?: string
     tolTip?: boolean | string
-    inputSize?: number
-    tab?: {
-        onClick?: any
-        name: string
-        size?: number
-        color?: string
-        disabled?: boolean
-    }
+    tab?: TabProps
     edge?: ReactNode
+    sizes?: SizeProps | undefined
+    themes?: {
+        default?: (ThemeProps & { tolTipColor?: string }) | undefined
+        error?: (ThemeProps & { errorMsgColor?: string }) | undefined
+        disabled?: ThemeProps | undefined
+        focus?: ThemeProps | undefined
+    }
 }
 
 const TextField = forwardRef((props: Props, ref: ForwardedRef<HTMLInputElement>) => {
-    const { theme = 'light', as = 'l', width = '100%' } = props
-    const { disabled, tab, error, edge } = props
+    const { disabled, tab, error, edge, sizes, themes } = props
 
     const [isFocused, setIsFocused] = useState(false)
     const handleFocus = useCallback(() => setIsFocused(true), [isFocused])
     const handleBlur = useCallback(() => setIsFocused(false), [isFocused])
 
-    //
-    // themes
-    const { THEMES: THEME_VARIANTS, SIZES: SIZE_VARIANTS, generateUUID } = VARIANTS({ error, disabled, isFocused })
+    const systems = { themes, focus: isFocused, error, disabled, sizes }
 
     //
     // numberic
@@ -53,42 +67,15 @@ const TextField = forwardRef((props: Props, ref: ForwardedRef<HTMLInputElement>)
 
     return (
         <V.Column gap={6}>
-            <V.Row
-                width={SIZE_VARIANTS?.[as].width as 'auto' | '100%'}
-                maxWidth={width}
-                align="center"
-                minHeight={SIZE_VARIANTS?.[as].height}
-                maxHeight={SIZE_VARIANTS?.[as].height}
-                border={{
-                    solid: 1,
-                    position: 'all',
-                    color: THEME_VARIANTS?.[theme].solidColor,
-                }}
-                borderRadius={SIZE_VARIANTS?.[as].br}
-                backgroundColor={disabled ? THEME_VARIANTS?.[theme].disabledColor : THEME_VARIANTS?.[theme].activeColor}
-                transitionTime={0.5}
-            >
+            <InputBox themes={themes as any} sizes={sizes} focus={isFocused} error={error} disabled={disabled}>
                 <input
-                    id={props?.id ?? generateUUID()}
+                    id={props?.id ?? useId()}
                     ref={ref}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     onInput={handleInput}
                     {...props}
-                    css={{
-                        ...(GlobalInputTheme() as any),
-                        width: SIZE_VARIANTS?.[as].width,
-                        height: '100%',
-                        color: THEME_VARIANTS?.[theme].color,
-                        fontSize: SIZE_VARIANTS?.[as].txtSize,
-                        padding: SIZE_VARIANTS?.[as].padding,
-                        outline: 'none',
-                        border: 'none',
-                        resize: 'none',
-                        backgroundColor: 'transparent',
-                        borderRadius: SIZE_VARIANTS?.[as].br,
-                        '::placeholder': { color: THEME_VARIANTS?.[theme].placeholder },
-                    }}
+                    css={InputTheme(systems as any)}
                 />
 
                 {!!tab && !edge && (
@@ -97,11 +84,7 @@ const TextField = forwardRef((props: Props, ref: ForwardedRef<HTMLInputElement>)
                         size={tab.size ?? 14}
                         onMouseEnter={!tab.disabled ? (handleFocus as any) : null}
                         onMouseLeave={!tab.disabled ? (handleBlur as any) : null}
-                        onClick={() => {
-                            if (tab.onClick) {
-                                tab.onClick()
-                            } else return
-                        }}
+                        onClick={() => tab.onClick && tab.onClick()}
                         padding={{ vertical: 10, right: 10, left: 6 }}
                         css={{ whiteSpace: 'nowrap' }}
                         disabled={tab.disabled}
@@ -114,15 +97,15 @@ const TextField = forwardRef((props: Props, ref: ForwardedRef<HTMLInputElement>)
                     <div
                         css={{
                             padding: '10px 10px 10px 6px',
-                            fontSize: 13,
-                            color: '#999',
+                            fontSize: sizes?.edgeSize ?? 13,
+                            color: InputEdgeColorTheme(systems as any),
                             whiteSpace: 'nowrap',
                         }}
                     >
                         {edge}
                     </div>
                 )}
-            </V.Row>
+            </InputBox>
         </V.Column>
     )
 })

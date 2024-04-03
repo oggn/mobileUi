@@ -81,7 +81,7 @@ export default function Fields() {
                     />
 
                     {/* ----- 텍스트 타입 인풋 : TextField ----- */}
-                    <Input label="이름" labelEdge="(필수)">
+                    <Input label="이름" important="(필수)">
                         <Input.TextField
                             placeholder="이름을 입력하세요"
                             type="text"
@@ -90,10 +90,11 @@ export default function Fields() {
                             onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                 setIsValues({ ...isValues, name: e.target.value })
                             }
+                            themes={{ default: { edgeColor: '#111' } }}
                         />
                     </Input>
 
-                    <Input label="이메일" labelEdge="(필수)">
+                    <Input label="이메일" important="(필수)">
                         <Input.TextField
                             placeholder="이메일을 입력하세요"
                             type="eamil"
@@ -115,7 +116,7 @@ export default function Fields() {
                     />
 
                     {/* ----- 연락처 타입 인풋 : PhoneNumberField ----- */}
-                    <Input label="연락처" labelEdge="(필수)">
+                    <Input label="연락처" important="(필수)">
                         <Input.PhoneNumberField
                             placeholder="연락처를 입력하세요"
                             value={isValues.tel}
@@ -139,11 +140,11 @@ export default function Fields() {
                     </Input>
 
                     {/* ----- 에디터 타입 인풋 : Textarea ----- */}
-                    <Input label="내용" labelEdge="(필수)">
+                    <Input label="내용" important="(필수)">
                         <Input.Textarea
                             rows={3}
                             placeholder="내용을 입력하세요"
-                            autoRaise
+                            // autoRaise
                             name="context"
                             value={isValues.context}
                             ref={textRef}

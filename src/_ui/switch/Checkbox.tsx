@@ -1,10 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import React, { ForwardedRef, InputHTMLAttributes, forwardRef, useId, useState } from 'react'
-
+import React, { ForwardedRef, InputHTMLAttributes, forwardRef, useState } from 'react'
 import { colors } from '../../libs/themes/colors'
 import { Txt } from '../typography/Txt'
-import { Row } from '../flex/view/Row'
-import { Column } from '../flex/view/Column'
+import { V } from '../flex/V'
 
 //
 interface CheckProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -12,14 +10,28 @@ interface CheckProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>
     size?: number
     type?: 'checkbox' | 'radio'
     theme?: 'light' | 'dark'
+    themes?: {
+        check?: {
+            defaultColor?: string
+            checkColor?: string
+            hoverColor?: string
+            disabledColor?: string
+            borderColor?: string
+            borderRadius?: string
+            checkSize?: string
+        }
+
+        label?: {
+            titleColor?: string
+            titleSize?: number
+            titleWeight?: 'lighter' | 'normal' | 'medium' | 'bold'
+            txtColor?: string
+            txtSize?: number
+        }
+    }
     label?: {
         title: string
-        titleColor?: string
-        titleSize?: number
-        titleWeight?: 'lighter' | 'normal' | 'medium' | 'bold'
         txt?: string
-        txtColor?: string
-        txtSize?: number
         txtOnClick?: any
     }
 }
@@ -27,39 +39,23 @@ interface CheckProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>
 export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: ForwardedRef<HTMLInputElement>) {
     const uid = generateUUID()
 
-    const { id, type = 'checkbox', disabled, theme = 'light', checkSize = 16, label } = props
+    const { id, type = 'checkbox', disabled, theme = 'light', checkSize = 16, label, themes } = props
+
+    const { check: checkTheme, label: labelTheme } = themes ?? {}
+
     const [hover, setHover] = useState(false)
 
-    const VARIANTS = {
-        light: {
-            defaultColor: '#e2e2e2',
-            hoverColor: '#F2F2FF',
-            disabledColor: '#c9c9c9',
-            border: '#ccc',
-            labelTitleColor: '#444',
-            labelTxtColor: '#999',
-        },
-        dark: {
-            defaultColor: '#333',
-            hoverColor: '#444',
-            disabledColor: '#111',
-            border: '#333',
-            labelTitleColor: '#ccc',
-            labelTxtColor: '#aaa',
-        },
-    } as const
-
     return (
-        <Row align="start" gap={3} width="auto">
+        <V.Row align="start" gap={3} width="auto">
             <label
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
                 css={{
                     ...CheckLabelTheme,
-                    maxWidth: checkSize + 10,
-                    maxHeight: checkSize + 10,
-                    minWidth: checkSize + 10,
-                    minHeight: checkSize + 10,
+                    maxWidth: checkTheme?.checkSize ?? 16 + 10,
+                    maxHeight: checkTheme?.checkSize ?? 16 + 10,
+                    minWidth: checkTheme?.checkSize ?? 16 + 10,
+                    minHeight: checkTheme?.checkSize ?? 16 + 10,
                     cursor: !disabled ? 'cursor' : 'default',
                 }}
                 htmlFor={id ?? uid}
@@ -67,7 +63,7 @@ export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: For
                 <div
                     css={{
                         ...HBoxTheme,
-                        backgroundColor: VARIANTS[theme].hoverColor,
+                        backgroundColor: checkTheme?.hoverColor ?? '#f2f2f2',
                         transform: hover ? 'scale(1)' : 'scale(0)',
                     }}
                 />
@@ -75,17 +71,18 @@ export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: For
                     ref={ref}
                     type={type}
                     css={{
-                        ...CheckTheme,
+                        ...CheckThemes,
                         zIndex: 1,
                         width: checkSize,
                         minWidth: checkSize,
                         height: checkSize,
                         minHeight: checkSize,
-                        backgroundColor: VARIANTS[theme].defaultColor,
-                        '&:checked': { backgroundColor: colors.keyColor },
+                        backgroundColor: checkTheme?.defaultColor ?? '#e0e0e0',
+                        borderRadius: checkTheme?.borderRadius ?? 6,
+                        '&:checked': { backgroundColor: checkTheme?.checkColor ?? colors.keyColor },
                         '&:disabled': {
-                            backgroundColor: VARIANTS[theme].disabledColor,
-                            border: `1px solid ${VARIANTS[theme].border}`,
+                            backgroundColor: checkTheme?.disabledColor ?? '#c9c9c9',
+                            border: `1px solid ${checkTheme?.borderColor ?? '#ccc'}`,
                             cursor: 'default',
                         },
                     }}
@@ -95,20 +92,20 @@ export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: For
             </label>
 
             {!!label && (
-                <Column gap={4}>
+                <V.Column gap={4}>
                     <label
                         htmlFor={id ?? uid}
                         onMouseEnter={() => setHover(true)}
                         onMouseLeave={() => setHover(false)}
                         css={{
-                            ...labelTheme,
+                            ...labelThemes,
                             cursor: disabled ? 'default' : 'pointer',
                         }}
                     >
                         <Txt
-                            weight={label.titleWeight ?? 'medium'}
-                            size={label.titleSize ?? 14}
-                            color={label.titleColor ?? VARIANTS[theme].labelTitleColor}
+                            weight={labelTheme?.titleWeight ?? 'medium'}
+                            size={labelTheme?.titleSize ?? 14}
+                            color={labelTheme?.titleColor ?? '#555'}
                             css={{ userSelect: 'none' }}
                         >
                             {label.title}
@@ -116,19 +113,19 @@ export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: For
                     </label>
 
                     <Txt
-                        size={label.txtSize ?? 12}
-                        color={label.txtColor ?? VARIANTS[theme].labelTxtColor}
+                        size={labelTheme?.txtSize ?? 12}
+                        color={labelTheme?.txtColor ?? '#888'}
                         onClick={label.txtOnClick}
                     >
                         {label.txt}
                     </Txt>
-                </Column>
+                </V.Column>
             )}
-        </Row>
+        </V.Row>
     )
 })
 
-const labelTheme: any = {
+const labelThemes: any = {
     display: 'flex',
     flexDirection: 'column',
     rowGap: 3,
@@ -155,10 +152,9 @@ const HBoxTheme: any = {
     borderRadius: 100,
 }
 
-const CheckTheme: any = {
+const CheckThemes: any = {
     zIndex: 1,
     border: '0px solid gainsboro',
-    borderRadius: '5px !important',
     appearance: 'none',
     userSelect: 'none',
     transition: '0.2s ease-in-out',
