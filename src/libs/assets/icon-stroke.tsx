@@ -1,2 +1,3 @@
 import ToastIcon from './icon-stroke/toast-icon'
-export { ToastIcon }
+import BackIcon from './icon-stroke/back-icon'
+export { ToastIcon, BackIcon }

@@ -22,6 +22,7 @@ interface Props
     backgroundColor?: string
     transitionTime?: number
     position: { top?: number; bottom?: number; left?: number; right?: number }
+    axis?: { x?: string | number; y?: string | number }
 }
 
 const Fixed = forwardRef((props: Props, ref: ForwardedRef<HTMLDivElement>) => {
@@ -64,6 +65,7 @@ const Fixed = forwardRef((props: Props, ref: ForwardedRef<HTMLDivElement>) => {
                 backgroundColor: props.backgroundColor,
                 borderRadius: props.borderRadius,
                 transition: `${props.transitionTime ?? 0}s ease-in-out`,
+                transform: `translate(${props.axis?.x ?? 0}, ${props.axis?.y ?? 0})`,
 
                 ...FlexT,
                 ...spaceT,

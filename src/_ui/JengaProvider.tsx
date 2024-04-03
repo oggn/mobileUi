@@ -1,5 +1,5 @@
-/** @jsxImportSource @emotion/react */
 import React, { ReactNode, createContext, useContext, useEffect, useState } from 'react'
+import { css } from '@emotion/react' // Assuming you're using Emotion for CSS-in-JS
 import { ToastSnackBar } from './feedback/ToastSnackBar'
 
 interface ToastProps {
@@ -8,6 +8,7 @@ interface ToastProps {
     id: string
     title: string
     description?: string
+    countdown: number // Added to track the countdown for each toast
 }
 
 const ToastContext = createContext({
@@ -20,6 +21,22 @@ export const useJenga = () => useContext(ToastContext)
 export function JengaProvider({ children }: { children: ReactNode }) {
     const [toasts, setToasts] = useState<ToastProps[]>([])
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setToasts(
+                (currentToasts) =>
+                    currentToasts
+                        .map((toast) => ({
+                            ...toast,
+                            countdown: toast.countdown > 0 ? toast.countdown - 1 : 0,
+                        }))
+                        .filter((toast) => toast.countdown > 0), // Remove toast when countdown reaches 0
+            )
+        }, 1000) // Update countdown every second
+
+        return () => clearInterval(interval)
+    }, [])
+
     const addToast = ({ theme, status, title, description }: Omit<ToastProps, 'id'>) => {
         const newToast = {
             id: Math.random().toString(36).substr(2, 9),
@@ -27,34 +44,28 @@ export function JengaProvider({ children }: { children: ReactNode }) {
             status,
             title,
             description,
+            countdown: 3, // Initialize countdown for each toast
         }
         setToasts((prevToasts) => [...prevToasts, newToast])
     }
 
-    useEffect(() => {
-        if (toasts.length > 0) {
-            const timer = setTimeout(() => {
-                setToasts((prevToasts) => prevToasts.slice(1))
-            }, 3500)
-            return () => clearTimeout(timer)
-        }
-    }, [toasts])
-
     return (
         <ToastContext.Provider value={{ addToast, toasts }}>
             {children}
-
             {toasts.length > 0 && (
-                <div css={{ ...toastTheme }}>
-                    <div css={{ maxWidth: '100%' }}>
+                <div css={toastTheme}>
+                    <div css={css({ maxWidth: '100%' })}>
                         {toasts.map((toast) => (
-                            <ToastSnackBar
-                                status={toast.status}
-                                id={toast.id}
-                                title={toast.title}
-                                description={toast.description}
-                                theme={toast.theme}
-                            />
+                            <div key={toast.id}>
+                                <ToastSnackBar
+                                    status={toast.status}
+                                    id={toast.id}
+                                    title={toast.title}
+                                    description={toast.description}
+                                    theme={toast.theme}
+                                    closeTime={toast.countdown}
+                                />
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -63,7 +74,7 @@ export function JengaProvider({ children }: { children: ReactNode }) {
     )
 }
 
-const toastTheme = {
+const toastTheme = css({
     position: 'fixed',
     top: 0,
     left: '50%',
@@ -74,4 +85,4 @@ const toastTheme = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-} as any
+})

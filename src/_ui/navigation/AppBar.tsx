@@ -64,6 +64,7 @@ export const AppBar = forwardRef(
                     <ServiceName>{serviceName}</ServiceName>
                     <nav
                         css={{
+                            position: 'relative',
                             width: '100%',
                             maxWidth: width,
                             height: '100%',

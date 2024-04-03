@@ -4,7 +4,7 @@ import { Global, css } from '@emotion/react'
 
 //
 //
-export default function GlobalThemes({ children }: { children?: ReactNode }): JSX.Element {
+export function GlobalThemes({ children }: { children?: ReactNode }): JSX.Element {
     return (
         <>
             <Global

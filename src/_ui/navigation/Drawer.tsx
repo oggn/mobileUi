@@ -78,7 +78,7 @@ export const Drawer = forwardRef((props: Props, ref?: ForwardedRef<HTMLDivElemen
                     }}
                 >
                     {cancelTabIconActive ? (
-                        <IconTab theme={theme} onClick={() => onCancel()}>
+                        <IconTab onClick={() => onCancel()}>
                             {CancelIcon({ fill: props.cancelTabColor ?? TYPE_VARIANTS[theme].iconFill })}
                         </IconTab>
                     ) : (
