@@ -1,18 +1,25 @@
+/** @jsxImportSource @emotion/react */
 import React, { ReactNode, createContext, useContext, useEffect, useState } from 'react'
-import { css } from '@emotion/react' // Assuming you're using Emotion for CSS-in-JS
+import { css } from '@emotion/react'
 import { ToastSnackBar } from './feedback/ToastSnackBar'
 
 interface ToastProps {
     theme?: 'light' | 'dark'
     status?: 'success' | 'failed'
-    id: string
+    id?: string
     title: string
     description?: string
-    countdown: number // Added to track the countdown for each toast
+    countdown?: number // Now optional
 }
 
 const ToastContext = createContext({
-    addToast: ({ theme, status, title, description }: Omit<ToastProps, 'id'>) => {},
+    addToast: ({
+        theme,
+        status,
+        title,
+        description,
+        countdown,
+    }: Omit<ToastProps, 'id' | 'countdown'> & { countdown?: number }) => {},
     toasts: [] as ToastProps[],
 })
 
@@ -23,28 +30,27 @@ export function JengaProvider({ children }: { children: ReactNode }) {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setToasts(
-                (currentToasts) =>
-                    currentToasts
-                        .map((toast) => ({
-                            ...toast,
-                            countdown: toast.countdown > 0 ? toast.countdown - 1 : 0,
-                        }))
-                        .filter((toast) => toast.countdown > 0), // Remove toast when countdown reaches 0
+            setToasts((currentToasts) =>
+                currentToasts
+                    .map((toast: any) => ({
+                        ...toast,
+                        countdown: toast?.countdown > 0 ? toast?.countdown - 1 : 0,
+                    }))
+                    .filter((toast) => toast.countdown > 0),
             )
-        }, 1000) // Update countdown every second
+        }, 1000)
 
         return () => clearInterval(interval)
     }, [])
 
-    const addToast = ({ theme, status, title, description }: Omit<ToastProps, 'id'>) => {
+    const addToast = ({ theme, status, title, description, countdown = 3 }: Omit<ToastProps, 'id'>) => {
         const newToast = {
             id: Math.random().toString(36).substr(2, 9),
             theme,
             status,
             title,
             description,
-            countdown: 3, // Initialize countdown for each toast
+            countdown,
         }
         setToasts((prevToasts) => [...prevToasts, newToast])
     }
