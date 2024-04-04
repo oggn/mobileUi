@@ -21,7 +21,7 @@ interface Props
     borderRadius?: number | string
     backgroundColor?: string
     transitionTime?: number
-    position: { top?: number; bottom?: number; left?: number; right?: number }
+    position: { top?: string | number; bottom?: string | number; left?: string | number; right?: string | number }
     axis?: { x?: string | number; y?: string | number }
 }
 

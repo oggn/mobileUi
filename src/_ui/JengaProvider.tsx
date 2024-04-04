@@ -2,6 +2,8 @@
 import React, { ReactNode, createContext, useContext, useEffect, useState } from 'react'
 import { css } from '@emotion/react'
 import { ToastSnackBar } from './feedback/ToastSnackBar'
+import { P } from './flex/P'
+import { V } from './flex/V'
 
 interface ToastProps {
     theme?: 'light' | 'dark'
@@ -9,7 +11,7 @@ interface ToastProps {
     id?: string
     title: string
     description?: string
-    countdown?: number // Now optional
+    countdown?: number
 }
 
 const ToastContext = createContext({
@@ -59,8 +61,14 @@ export function JengaProvider({ children }: { children: ReactNode }) {
         <ToastContext.Provider value={{ addToast, toasts }}>
             {children}
             {toasts.length > 0 && (
-                <div css={toastTheme}>
-                    <div css={css({ maxWidth: '100%' })}>
+                <P.Fixed
+                    zIndex={2000}
+                    position={{ left: 0, right: 0, top: 0 }}
+                    transitionTime={0.3}
+                    align="center"
+                    crossAlign="center"
+                >
+                    <V.Column zIndex={2000} padding={{ vertical: 30, horizontal: 16 }} width="auto">
                         {toasts.map((toast) => (
                             <div key={toast.id}>
                                 <ToastSnackBar
@@ -73,8 +81,8 @@ export function JengaProvider({ children }: { children: ReactNode }) {
                                 />
                             </div>
                         ))}
-                    </div>
-                </div>
+                    </V.Column>
+                </P.Fixed>
             )}
         </ToastContext.Provider>
     )
@@ -83,12 +91,13 @@ export function JengaProvider({ children }: { children: ReactNode }) {
 const toastTheme = css({
     position: 'fixed',
     top: 0,
-    left: '50%',
-    transform: 'translateX(-50%)',
+    left: 0,
+    right: 0,
     padding: '32px 16px',
-    zIndex: 10000,
+    zIndex: 100000,
     transition: '0.3s ease-in-out',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'transparent',
 })

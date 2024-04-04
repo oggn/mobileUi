@@ -36,20 +36,18 @@ export function ToastSnackBar({
     return (
         <V.Column
             key={id}
-            minWidth={220}
+            zIndex={9999999}
+            borderRadius={14}
+            padding={{ horizontal: 14, bottom: 3 }}
             backgroundColor={THEME_VARIANT[theme].bg}
             css={{
                 boxShadow: '0 2px 20px rgba(0,0,0,0.12)',
                 marginTop: '8px',
-                borderRadius: '14px',
                 animation: `${fadeIn} 0.5s, ${fadeOut} 0.5s 4.5s`,
                 transition: '0.3s ease-in-out',
-                display: 'flex',
-                columnGap: 8,
-                zIndex: 999999,
             }}
         >
-            <V.Row align="start" padding={{ top: 10, bottom: 12, horizontal: 14 }} gap={10}>
+            <V.Row align="start" padding={{ vertical: 10 }} gap={8} borderRadius={14}>
                 {status === 'success' && (
                     <svg
                         css={{ marginTop: 3 }}
@@ -82,7 +80,7 @@ export function ToastSnackBar({
                     </svg>
                 )}
 
-                <V.Column align="start" gap={4}>
+                <V.Column align="start" gap={3}>
                     <Txt
                         size={14}
                         weight="bold"
@@ -98,7 +96,6 @@ export function ToastSnackBar({
                             css={{
                                 fontSize: 13,
                                 color: THEME_VARIANT[theme].sub,
-                                whiteSpace: 'pre-line',
                             }}
                         >
                             {description}
@@ -107,15 +104,17 @@ export function ToastSnackBar({
                 </V.Column>
             </V.Row>
 
-            <div
-                css={{
-                    width: `calc(100%/${closeTime})`,
-                    height: 4,
-                    backgroundColor: status === 'success' ? '#3ECC39' : 'F04D4D',
-                    borderRadius: '0 0 14px 14px',
-                    transition: '0.3s ease-in-out',
-                }}
-            />
+            <V.Column minHeight={4} maxHeight={4}>
+                <div
+                    css={{
+                        width: `calc(100%/${closeTime})`,
+                        height: 4,
+                        backgroundColor: status === 'success' ? '#3ECC39' : 'F04D4D',
+                        transition: '0.3s ease-in-out',
+                        borderRadius: '14px',
+                    }}
+                />
+            </V.Column>
         </V.Column>
     )
 }

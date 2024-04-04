@@ -17,8 +17,7 @@ export default function Index() {
             <SEO />
 
             <V.Section>
-                <V.Container maxWidth={screenSize[3]} padding={{ top: 20, bottom: 70, horizontal: 20 }}>
-                    <Spacing size={16} />
+                <V.Container maxWidth={screenSize[3]} padding={{ top: 30, bottom: 70, horizontal: 20 }}>
                     <Comp1 />
                     <Spacing size={12} />
                     <Comp2 />
