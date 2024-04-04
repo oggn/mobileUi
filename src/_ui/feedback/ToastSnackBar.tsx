@@ -37,6 +37,7 @@ export function ToastSnackBar({
         <V.Column
             key={id}
             zIndex={9999999}
+            align="start"
             borderRadius={14}
             padding={{ horizontal: 14, bottom: 3 }}
             backgroundColor={THEME_VARIANT[theme].bg}
