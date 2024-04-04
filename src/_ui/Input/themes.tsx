@@ -33,6 +33,7 @@ type InputBoxProps = {
     error: boolean | undefined
     disabled: boolean | undefined
     children: ReactNode
+    align?: 'start' | 'end' | 'center'
 }
 
 //
@@ -43,6 +44,7 @@ export const Label = ({
     labelSize,
     themes,
     error,
+
     ...props
 }: {
     htmlFor: any
@@ -79,7 +81,7 @@ export const Label = ({
 
 //
 // 인풋 박스
-export const InputBox = ({ sizes, themes, focus, error, disabled, ...props }: InputBoxProps) => {
+export const InputBox = ({ sizes, themes, focus, error, disabled, align, ...props }: InputBoxProps) => {
     const borderColor = () => {
         if (focus && !error) return themes?.focus?.borderColor ?? '#b9d0e4'
         if (disabled) return themes?.disabled?.borderColor ?? '#eee'
@@ -98,7 +100,7 @@ export const InputBox = ({ sizes, themes, focus, error, disabled, ...props }: In
         <V.Row
             width={(sizes?.width as any) ?? '100%'}
             maxWidth={(sizes?.width as any) ?? '100%'}
-            align="center"
+            align={align ?? 'center'}
             minHeight={sizes?.height ?? 50}
             maxHeight={sizes?.height ?? 50}
             border={{

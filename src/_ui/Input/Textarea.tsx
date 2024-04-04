@@ -76,6 +76,7 @@ const Textarea = forwardRef((props: Props, ref: ForwardedRef<HTMLTextAreaElement
                 focus={isFocused}
                 error={error}
                 disabled={disabled}
+                align="end"
             >
                 <V.Row padding={{ all: 8 }}>
                     <textarea
