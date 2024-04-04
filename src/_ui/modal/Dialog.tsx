@@ -22,7 +22,7 @@ export function Dialog(props: Props) {
     const ref = useRef<HTMLDivElement>(null)
 
     const THEME_VARIANT = {
-        light: { bg: '#fff', titleColor: '#555', txtColor: '#999', cancelColor: '#ccc' },
+        light: { bg: '#fff', titleColor: '#555', txtColor: '#797979', cancelColor: '#ccc' },
         dark: { bg: '#222', titleColor: '#e2e2e2', txtColor: '#999', cancelColor: '#555' },
     }
 
@@ -80,7 +80,7 @@ export function Dialog(props: Props) {
                     </Txt>
 
                     {tabs?.length !== 0 && !!tabs && (
-                        <V.Row gap={tabSpaceGap} margin={{ top: tabSpaceTop ?? 18 }}>
+                        <V.Row gap={tabSpaceGap} margin={{ top: tabSpaceTop ?? 22 }}>
                             {tabs?.map((item: any) => (
                                 <Button
                                     minHeight={52}

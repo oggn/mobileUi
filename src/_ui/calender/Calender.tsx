@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { V } from '../flex/V'
 import { TxtSpan } from '../typography/TxtSpan'
 import { CalenderGrid, dd_theme, mm_theme, year_theme } from './theme'
@@ -16,10 +16,14 @@ interface CalendarProps {
 }
 
 export function Calendar({ minDate, maxDate, date, onClick, format = 'yyyy-mm-dd' }: CalendarProps) {
-    let selectedDate = date ?? new Date()
+    const [selectedDate, setSelectedDate] = useState(() => date || new Date())
 
-    const [currentMonth, setCurrentMonth] = useState(selectedDate.getMonth())
-    const [currentYear, setCurrentYear] = useState(selectedDate.getFullYear())
+    useEffect(() => {
+        if (date instanceof Date || date === null) setSelectedDate(date || new Date())
+    }, [date])
+
+    const [currentMonth, setCurrentMonth] = useState(selectedDate?.getMonth())
+    const [currentYear, setCurrentYear] = useState(selectedDate?.getFullYear())
     const [isFormat, setIsFormat] = useState(format)
 
     const today = new Date()

@@ -1,8 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { useCallback, useEffect, useRef } from 'react'
-
-import styled from '@emotion/styled'
-import { colors, MQ } from '@/libs/themes'
+import { MQ } from '@/libs/themes'
 import { BlurLayer, V, P } from '../index'
 import { Calendar } from '../calender/Calender'
 
@@ -98,7 +96,7 @@ export function CalenderModal({
                         <Calendar
                             format={format ?? 'yyyy-mm-dd'}
                             date={date}
-                            onClick={onClick}
+                            onClick={(date) => onClick(date)}
                             maxDate={props.maxDate}
                             minDate={props.minDate}
                             {...props}

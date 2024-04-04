@@ -8,6 +8,7 @@ import { ForwardedRef, HTMLAttributes, forwardRef, memo } from 'react'
 interface Props extends HTMLAttributes<HTMLDivElement> {
     children?: never[]
     size?: number
+    storkeSize?: number
     variant?: 'light' | 'dark'
 }
 
@@ -15,7 +16,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 // -------------- LoadingSpinner --------------
 // --------------------------------------------
 const LoadingSpinnerUi = forwardRef(
-    ({ size = 40, variant = 'light', ...props }: Props, ref?: ForwardedRef<HTMLDivElement>) => {
+    ({ size = 40, storkeSize = 3, variant = 'light', ...props }: Props, ref?: ForwardedRef<HTMLDivElement>) => {
         const rotation = keyframes`
   0% {
     transform: rotate(0deg);
@@ -26,7 +27,7 @@ const LoadingSpinnerUi = forwardRef(
 `
 
         const VARIANTS = {
-            light: { color: '#e0e0e0' },
+            light: { color: '#ccc' },
             dark: { color: '#999' },
         }
 
@@ -46,7 +47,7 @@ const LoadingSpinnerUi = forwardRef(
                         minWidth: `${size}px`,
                         height: `${size}px`,
                         minHeight: `${size}px`,
-                        border: `3px solid ${VARIANTS[variant].color}`,
+                        border: `${storkeSize}px solid ${VARIANTS[variant].color}`,
                         borderBottomColor: 'transparent',
                         borderRadius: '50%',
                         display: 'inline-block',
