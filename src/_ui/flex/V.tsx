@@ -11,7 +11,11 @@ import { Item } from './view/Item'
 export function V({ children }: { children: ReactElement }) {
     const child = Children.only(children)
 
-    return <>{cloneElement(child, { ...child.props })}</>
+    return (
+        <div css={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
+            {cloneElement(child, { ...child.props })}
+        </div>
+    )
 }
 
 V.Section = Section

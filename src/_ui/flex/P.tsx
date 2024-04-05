@@ -8,7 +8,11 @@ import { BottomFixedAnimate } from './position/BottomFixedAnimate'
 export function P({ children }: { children: ReactElement }) {
     const child = Children.only(children)
 
-    return <>{cloneElement(child, { ...child.props })}</>
+    return (
+        <div css={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
+            {cloneElement(child, { ...child.props })}
+        </div>
+    )
 }
 
 P.Sticky = Sticky
