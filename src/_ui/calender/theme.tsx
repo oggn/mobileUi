@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { colors } from '@/libs/themes'
 import { Interpolation } from '@emotion/react'
-import { Theme } from 'next-auth'
+import { Theme } from '@emotion/react'
 import { ReactNode } from 'react'
 
 //
