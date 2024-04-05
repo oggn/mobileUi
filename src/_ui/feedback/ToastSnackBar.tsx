@@ -110,7 +110,7 @@ export function ToastSnackBar({
                     css={{
                         width: `calc(100%/${closeTime})`,
                         height: 4,
-                        backgroundColor: status === 'success' ? '#3ECC39' : 'F04D4D',
+                        backgroundColor: status === 'success' ? '#3ECC39' : '#ef6565',
                         transition: '0.3s ease-in-out',
                         borderRadius: '14px',
                     }}
