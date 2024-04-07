@@ -9,7 +9,6 @@ interface CheckProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>
     checkSize?: number
     size?: number
     type?: 'checkbox' | 'radio'
-    theme?: 'light' | 'dark'
     themes?: {
         check?: {
             defaultColor?: string
@@ -39,7 +38,7 @@ interface CheckProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>
 export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: ForwardedRef<HTMLInputElement>) {
     const uid = generateUUID()
 
-    const { id, type = 'checkbox', disabled, theme = 'light', checkSize = 16, label, themes } = props
+    const { id, type = 'checkbox', disabled, checkSize = 16, label, themes } = props
 
     const { check: checkTheme, label: labelTheme } = themes ?? {}
 
