@@ -5,6 +5,7 @@ import { BlurLayer, V, P } from '../index'
 import { Calendar } from '../calender/Calender'
 
 interface Props {
+    zIndex?: number
     format?: 'yyyy-mm-dd' | 'yyyy-mm' | 'yyyy'
     open: boolean
     onCancel: () => void
@@ -48,12 +49,12 @@ export function CalenderModal({
 
     return (
         <>
-            {open && <BlurLayer />}
+            {open && <BlurLayer zIndex={props?.zIndex ? props?.zIndex - 1 : 9998} />}
             <P.Fixed
                 height="100%"
                 align="center"
                 crossAlign="center"
-                zIndex={9999}
+                zIndex={props?.zIndex ?? 9999}
                 position={{
                     top: open ? 0 : ('120%' as any),
                     bottom: 0,

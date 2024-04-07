@@ -12,6 +12,7 @@ interface BottomSheetProps extends HTMLAttributes<HTMLElement> {
     open: boolean
     onCancel: () => void
     theme?: 'light' | 'dark'
+    zIndex?: number
 }
 
 // -----------------------------------------
@@ -81,10 +82,10 @@ export function BottomSheet({ children, open, onCancel, theme = 'light', ...prop
 
     return (
         <>
-            {open && <BlurLayer />}
+            {open && <BlurLayer zIndex={props?.zIndex ? props?.zIndex - 1 : 9998} />}
 
             <P.Fixed
-                zIndex={9999}
+                zIndex={props?.zIndex ?? 9999}
                 width="100%"
                 height="100%"
                 position={{

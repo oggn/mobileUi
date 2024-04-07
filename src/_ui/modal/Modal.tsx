@@ -13,6 +13,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
     onCancel: () => void
     modalSize?: number
     outSideCloseActive?: boolean
+    zIndex?: number
 }
 
 export const Modal = (props: Props) => {
@@ -42,10 +43,10 @@ export const Modal = (props: Props) => {
 
     return (
         <>
-            {open && <BlurLayer />}
+            {open && <BlurLayer zIndex={props?.zIndex ? props?.zIndex - 1 : 9998} />}
 
             <P.Fixed
-                zIndex={9999}
+                zIndex={props?.zIndex ?? 9999}
                 width="100%"
                 height="100%"
                 position={{

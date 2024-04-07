@@ -7,6 +7,7 @@ import { Textarea } from './Textarea'
 import { PhoneNumberField } from './PhoneNumberField'
 import { NumbericField } from './NumbericField'
 import { Label } from './themes'
+import { SearchField } from './SearchField'
 
 interface InputProps extends HTMLAttributes<HTMLDivElement> {
     children: ReactElement
@@ -72,3 +73,4 @@ Input.TextField = TextField
 Input.Textarea = Textarea
 Input.PhoneNumberField = PhoneNumberField
 Input.NumbericField = NumbericField
+Input.SearchField = SearchField

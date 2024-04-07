@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useCallback, useEffect, useRef, HTMLAttributes } from 'react'
+import React, { useCallback, useEffect, useRef, HTMLAttributes, ReactNode } from 'react'
 
 import { Button, Txt, IconTab, BlurLayer, V, P } from '../index'
 import { colors } from 'src/libs/themes'
@@ -7,13 +7,23 @@ import { colors } from 'src/libs/themes'
 interface Props extends HTMLAttributes<HTMLElement> {
     theme?: 'light' | 'dark'
     open: boolean
+    children?: ReactNode
     onCancel: () => void
     dialogSizes?: number
     title: string
     description?: string
     tabSpaceGap?: number
     tabSpaceTop?: number
-    tabs?: { name: string; buttonColor?: string; txtColor?: string; onClick?: () => void }[] | undefined
+    zIndex?: number
+    tabs?:
+        | {
+              name: string
+              buttonColor?: string
+              txtColor?: string
+              onClick?: () => void
+              disabled?: boolean
+          }[]
+        | undefined
 }
 
 export function Dialog(props: Props) {
@@ -44,10 +54,10 @@ export function Dialog(props: Props) {
 
     return (
         <>
-            {open && <BlurLayer />}
+            {open && <BlurLayer zIndex={props?.zIndex ? props?.zIndex - 1 : 9999} />}
 
             <P.Fixed
-                zIndex={10000}
+                zIndex={props?.zIndex ?? 10000}
                 align="center"
                 crossAlign="center"
                 width="100%"
@@ -71,13 +81,15 @@ export function Dialog(props: Props) {
                     ref={ref}
                     {...props}
                 >
-                    <Txt as="b" size={20} color={THEME_VARIANT[theme].titleColor}>
+                    <Txt as="b" weight="bold" size={20} color={THEME_VARIANT[theme].titleColor}>
                         {title}
                     </Txt>
 
                     <Txt size={15} margin={{ top: 10 }} color={THEME_VARIANT[theme].txtColor}>
                         {description}
                     </Txt>
+
+                    {props?.children}
 
                     {tabs?.length !== 0 && !!tabs && (
                         <V.Row gap={tabSpaceGap} margin={{ top: tabSpaceTop ?? 22 }}>
@@ -89,6 +101,7 @@ export function Dialog(props: Props) {
                                     onClick={() => item.onClick()}
                                     buttonColor={item?.buttonColor ?? colors.keyColor}
                                     txtColor={item?.txtColor ?? '#fff'}
+                                    disabled={item?.disabled}
                                 >
                                     {item?.name}
                                 </Button>

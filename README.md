@@ -113,6 +113,7 @@ V2 버전으로 업데이트 되었으며, 모든 위젯이 업데이트 및 최
     -   PhoneNumberField(연락처 필드 ex_010-1234-5678)
     -   NumbericField(통화화폐 단위 필드 ex_10,000)
     -   TextArea(에디터 필드)
+    -   SearchField(검색 필드)
 
 -   Select : select(label) 기능
 
