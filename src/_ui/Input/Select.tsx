@@ -95,7 +95,7 @@ const SelectComponent = forwardRef<HTMLSelectElement, Props>((props: Props, ref)
                 </P.Absolute>
             </InputBox>
 
-            {error && (
+            {error && !!errorMessage && (
                 <Txt
                     color={themes?.error?.errorMsgColor ?? '#FF6767'}
                     size={sizes?.errorMsgSize ?? 13}

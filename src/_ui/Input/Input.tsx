@@ -46,7 +46,7 @@ export function Input({ label, labelSize, maxWidth, ...props }: InputProps) {
                 ...child.props,
             })}
 
-            {error && (
+            {error && !errorMsg && (
                 <Txt
                     color={themes?.error?.errorMsgColor ?? '#FF6767'}
                     size={sizes?.errorMsgSize ?? 13}
