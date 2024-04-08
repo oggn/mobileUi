@@ -18,7 +18,7 @@ interface BottomSheetProps extends HTMLAttributes<HTMLElement> {
 // -----------------------------------------
 // -------------- BottomSheet --------------
 // -----------------------------------------
-export function BottomSheet({ children, open, onCancel, theme = 'light', ...props }: BottomSheetProps) {
+export function BottomSheet({ children, open, onCancel, theme = 'light', zIndex, ...props }: BottomSheetProps) {
     const ref = useRef<HTMLDivElement>(null)
     const viewRef = useRef<HTMLDivElement>(null)
     const [startY, setStartY] = useState(0)
@@ -82,10 +82,10 @@ export function BottomSheet({ children, open, onCancel, theme = 'light', ...prop
 
     return (
         <>
-            {open && <BlurLayer zIndex={props?.zIndex ? props?.zIndex - 1 : 9998} />}
+            {open && <BlurLayer zIndex={zIndex ? zIndex - 1 : 9998} />}
 
             <P.Fixed
-                zIndex={props?.zIndex ?? 9999}
+                zIndex={zIndex ?? 9999}
                 width="100%"
                 height="100%"
                 position={{

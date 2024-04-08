@@ -25,8 +25,17 @@ export function TxtTab(props: Props) {
         else setOs('window')
     }, [os])
 
-    const { cursor, color = '#4788f4', size = 14 } = props
-    const { padding, margin, weight = 'normal', disabledColor, underline } = props
+    const {
+        cursor,
+        color = '#4788f4',
+        size = 14,
+        padding,
+        margin,
+        weight = 'normal',
+        disabledColor,
+        underline,
+        ...rest
+    } = props
 
     const TYPOGRAPH_WEIGHT = {
         lighter: { fontWeight: os === 'window' ? '300' : '400' },
@@ -55,7 +64,7 @@ export function TxtTab(props: Props) {
 
                 '&:active': { opacity: 0.7 },
             }}
-            {...props}
+            {...rest}
         >
             {props.children}
         </button>

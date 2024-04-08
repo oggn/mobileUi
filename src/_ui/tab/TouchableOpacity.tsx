@@ -9,13 +9,16 @@ import Link from 'next/link'
 import { BorderTheme, BorderType } from '../_themes/border'
 
 interface Props
-    extends Omit<HTMLAttributes<HTMLDivElement | HTMLLIElement | HTMLSpanElement | HTMLAnchorElement>, 'color'>,
+    extends Omit<
+            HTMLAttributes<HTMLDivElement | HTMLLIElement | HTMLSpanElement | HTMLButtonElement | HTMLAnchorElement>,
+            'color'
+        >,
         ViewportTypes,
         FlexType,
         BorderType,
         SpaceType,
         CursorType {
-    as?: 'div' | 'li' | 'span' | 'a'
+    as?: 'div' | 'li' | 'span' | 'button' | 'a'
     children: ReactNode
     txtSize?: number
     txtColor?: string
@@ -28,13 +31,34 @@ interface Props
 }
 
 export function TouchableOpacity(props: Props) {
-    const { as = 'div', cursor, txtColor = '#4788f4', txtSize = 14 } = props
-    const { disabledColor, touchOpacity, backgroundColor, borderRadius } = props
-    const { padding, margin } = props
-    const { width, minWidth, maxWidth } = props
-    const { height, minHeight, maxHeight } = props
-    const { flex, direction = 'horizontal', align = 'center', crossAlign } = props
-    const { wrap, gap, crossGap, border, opacity } = props
+    const {
+        as = 'div',
+        width,
+        minWidth,
+        maxWidth,
+        height,
+        minHeight,
+        maxHeight,
+        flex,
+        direction = 'horizontal',
+        align = 'center',
+        crossAlign,
+        wrap,
+        gap,
+        crossGap,
+        border,
+        opacity,
+        cursor,
+        txtColor = '#4788f4',
+        txtSize = 14,
+        disabledColor,
+        touchOpacity,
+        backgroundColor,
+        borderRadius,
+        padding,
+        margin,
+        ...rest
+    } = props
 
     const spaceT = SpaceTheme({ padding, margin }) as any
     const borderT = BorderTheme({ border })
@@ -72,7 +96,7 @@ export function TouchableOpacity(props: Props) {
                         '&:disabled': { color: disabledColor ?? '#ccc', cursor: 'default' },
                         '&:active': { opacity: touchOpacity ?? 0.7 },
                     }}
-                    {...props}
+                    {...rest}
                 >
                     {props.children}
                 </div>
@@ -98,7 +122,7 @@ export function TouchableOpacity(props: Props) {
                         '&:disabled': { color: disabledColor ?? '#ccc', cursor: 'default' },
                         '&:active': { opacity: touchOpacity ?? 0.7 },
                     }}
-                    {...props}
+                    {...rest}
                 >
                     {props.children}
                 </li>
@@ -124,10 +148,36 @@ export function TouchableOpacity(props: Props) {
                         '&:disabled': { color: disabledColor ?? '#ccc', cursor: 'default' },
                         '&:active': { opacity: touchOpacity ?? 0.7 },
                     }}
-                    {...props}
+                    {...rest}
                 >
                     {props.children}
                 </span>
+            )}
+
+            {as === 'button' && (
+                <button
+                    css={{
+                        position: 'relative',
+                        whiteSpace: 'nowrap',
+                        fontSize: txtSize ? `${txtSize / 16}rem` : '0.938rem',
+                        color: txtColor,
+                        transition: '0.1s ease-in-out',
+                        backgroundColor,
+                        borderRadius: borderRadius,
+                        opacity,
+                        ...viewT,
+                        ...FlexT,
+                        ...spaceT,
+                        ...borderT,
+                        ...cursorT,
+
+                        '&:disabled': { color: disabledColor ?? '#ccc', cursor: 'default' },
+                        '&:active': { opacity: touchOpacity ?? 0.7 },
+                    }}
+                    {...rest}
+                >
+                    {props.children}
+                </button>
             )}
 
             {as === 'a' && (
@@ -151,7 +201,7 @@ export function TouchableOpacity(props: Props) {
                         '&:disabled': { color: disabledColor ?? '#ccc', cursor: 'default' },
                         '&:active': { opacity: touchOpacity ?? 0.7 },
                     }}
-                    {...props}
+                    {...rest}
                 >
                     {props.children}
                 </Link>

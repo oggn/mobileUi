@@ -41,7 +41,7 @@ interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
 }
 
 const TextField = forwardRef((props: Props, ref: ForwardedRef<HTMLInputElement>) => {
-    const { disabled, tab, error, edge, sizes, themes } = props
+    const { disabled, tab, error, edge, sizes, themes, ...rest } = props
 
     const [isFocused, setIsFocused] = useState(false)
     const handleFocus = useCallback(() => setIsFocused(true), [isFocused])
@@ -74,7 +74,7 @@ const TextField = forwardRef((props: Props, ref: ForwardedRef<HTMLInputElement>)
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     onInput={handleInput}
-                    {...props}
+                    {...rest}
                     css={InputTheme(systems as any)}
                 />
 

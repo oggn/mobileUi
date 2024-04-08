@@ -24,12 +24,27 @@ interface Props
 }
 
 export const Button = forwardRef<HTMLButtonElement, Props>((props: Props, ref: ForwardedRef<HTMLButtonElement>) => {
-    const { width, minWidth, maxWidth } = props
-    const { height, minHeight, maxHeight } = props
-    const { gap, crossGap } = props
-    const { padding, margin } = props
-    const { variant = 'fill', as = 'l', txtSize } = props
-    const { txtColor, buttonColor, border, borderRadius, shadow } = props
+    const {
+        width,
+        minWidth,
+        maxWidth,
+        height,
+        minHeight,
+        maxHeight,
+        gap,
+        crossGap,
+        padding,
+        margin,
+        variant = 'fill',
+        as = 'l',
+        txtSize,
+        txtColor,
+        buttonColor,
+        border,
+        borderRadius,
+        shadow,
+        ...rest
+    } = props
 
     const TYPE_VARIANTS = {
         fill: {
@@ -103,7 +118,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>((props: Props, ref: F
                 '&:hover': { filter: 'saturate(90%)', boxShadow: 'none' },
                 '&:active': { transform: 'scale(0.95)', boxShadow: 'none' },
             }}
-            {...props}
+            {...rest}
         >
             {props.children}
         </button>

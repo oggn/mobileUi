@@ -25,11 +25,21 @@ export function Txt(props: Props) {
         else setOs('window')
     }, [os])
 
-    const { as = 'p', color = '#444', size } = props
-    const { weight, whiteSpace = 'pre-line', cursor, underline } = props
-    const { ellipsis = { ellipsis: false } } = props
-    const { lineHeight, txtAlign = 'start' } = props
-    const { padding = { all: 0 }, margin = { all: 0 } } = props
+    const {
+        as = 'p',
+        color = '#444',
+        size,
+        weight,
+        whiteSpace = 'pre-line',
+        cursor,
+        underline,
+        ellipsis = { ellipsis: false },
+        lineHeight,
+        txtAlign = 'start',
+        padding = { all: 0 },
+        margin = { all: 0 },
+        ...rest
+    } = props
 
     const TYPOGRAPH_WEIGHT = {
         lighter: { fontWeight: os === 'window' ? '300' : '400' },
@@ -69,55 +79,55 @@ export function Txt(props: Props) {
     return (
         <>
             {as === 'h1' && (
-                <h1 css={asTypeTheme({ s: size ?? 52, w: weight ?? 'bold' })} {...props}>
+                <h1 css={asTypeTheme({ s: size ?? 52, w: weight ?? 'bold' })} {...rest}>
                     {props.children}
                 </h1>
             )}
 
             {as === 'h2' && (
-                <h2 css={asTypeTheme({ s: size ?? 44, w: weight ?? 'bold' })} {...props}>
+                <h2 css={asTypeTheme({ s: size ?? 44, w: weight ?? 'bold' })} {...rest}>
                     {props.children}
                 </h2>
             )}
 
             {as === 'h3' && (
-                <h3 css={asTypeTheme({ s: size ?? 36, w: weight ?? 'bold' })} {...props}>
+                <h3 css={asTypeTheme({ s: size ?? 36, w: weight ?? 'bold' })} {...rest}>
                     {props.children}
                 </h3>
             )}
 
             {as === 'h4' && (
-                <h4 css={asTypeTheme({ s: size ?? 32, w: weight ?? 'bold' })} {...props}>
+                <h4 css={asTypeTheme({ s: size ?? 32, w: weight ?? 'bold' })} {...rest}>
                     {props.children}
                 </h4>
             )}
 
             {as === 'h5' && (
-                <h5 css={asTypeTheme({ s: size ?? 28, w: weight ?? 'bold' })} {...props}>
+                <h5 css={asTypeTheme({ s: size ?? 28, w: weight ?? 'bold' })} {...rest}>
                     {props.children}
                 </h5>
             )}
 
             {as === 'h6' && (
-                <h6 css={asTypeTheme({ s: size ?? 26, w: weight ?? 'bold' })} {...props}>
+                <h6 css={asTypeTheme({ s: size ?? 26, w: weight ?? 'bold' })} {...rest}>
                     {props.children}
                 </h6>
             )}
 
             {as === 'b' && (
-                <b css={asTypeTheme({ s: size ?? 20, w: weight ?? 'bold' })} {...props}>
+                <b css={asTypeTheme({ s: size ?? 20, w: weight ?? 'bold' })} {...rest}>
                     {props.children}
                 </b>
             )}
 
             {as === 'strong' && (
-                <strong css={asTypeTheme({ s: size ?? 18, w: weight ?? 'medium' })} {...props}>
+                <strong css={asTypeTheme({ s: size ?? 18, w: weight ?? 'medium' })} {...rest}>
                     {props.children}
                 </strong>
             )}
 
             {as === 'p' && (
-                <strong css={asTypeTheme({ s: size ?? 15, w: weight ?? 'normal' })} {...props}>
+                <strong css={asTypeTheme({ s: size ?? 15, w: weight ?? 'normal' })} {...rest}>
                     {props.children}
                 </strong>
             )}

@@ -49,9 +49,8 @@ interface Props extends SelectHTMLAttributes<HTMLSelectElement> {
 }
 
 const SelectComponent = forwardRef<HTMLSelectElement, Props>((props: Props, ref) => {
-    const { options, renderItem, ...rest } = props
-
-    const { error, errorMessage, tolTip, disabled, label, placeholder, themes, sizes } = props
+    const { options, renderItem, error, errorMessage, tolTip, disabled, label, placeholder, themes, sizes, ...rest } =
+        props
 
     const [isFocused, setIsFocused] = useState(false)
     const handleFocus = useCallback(() => setIsFocused(true), [isFocused])

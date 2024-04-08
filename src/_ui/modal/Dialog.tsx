@@ -27,8 +27,19 @@ interface Props extends HTMLAttributes<HTMLElement> {
 }
 
 export function Dialog(props: Props) {
-    const { theme = 'light', dialogSizes = 340, open, onCancel } = props
-    const { title, description, tabs, tabSpaceGap = 5, tabSpaceTop } = props
+    const {
+        theme = 'light',
+        dialogSizes = 340,
+        open,
+        onCancel,
+        title,
+        description,
+        tabs,
+        tabSpaceGap = 5,
+        tabSpaceTop,
+        zIndex,
+        ...rest
+    } = props
     const ref = useRef<HTMLDivElement>(null)
 
     const THEME_VARIANT = {
@@ -54,10 +65,10 @@ export function Dialog(props: Props) {
 
     return (
         <>
-            {open && <BlurLayer zIndex={props?.zIndex ? props?.zIndex - 1 : 9999} />}
+            {open && <BlurLayer zIndex={zIndex ? zIndex - 1 : 9999} />}
 
             <P.Fixed
-                zIndex={props?.zIndex ?? 10000}
+                zIndex={zIndex ?? 10000}
                 align="center"
                 crossAlign="center"
                 width="100%"
@@ -79,7 +90,7 @@ export function Dialog(props: Props) {
                     borderRadius={20}
                     backgroundColor={THEME_VARIANT[theme].bg}
                     ref={ref}
-                    {...props}
+                    {...rest}
                 >
                     <Txt as="b" weight="bold" size={20} color={THEME_VARIANT[theme].titleColor}>
                         {title}

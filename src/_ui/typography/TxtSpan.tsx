@@ -23,9 +23,18 @@ export function TxtSpan(props: Props) {
         else setOs('window')
     }, [os])
 
-    const { color = '#888', size = 13, weight, cursor, underline } = props
-    const { lineHeight, txtAlign = 'start' } = props
-    const { padding = { all: 0 }, margin = { all: 0 } } = props
+    const {
+        color = '#888',
+        size = 13,
+        weight,
+        cursor,
+        underline,
+        lineHeight,
+        txtAlign = 'start',
+        padding = { all: 0 },
+        margin = { all: 0 },
+        ...rest
+    } = props
 
     const TYPOGRAPH_WEIGHT = {
         lighter: { fontWeight: os === 'window' ? '300' : '400' },
@@ -51,7 +60,7 @@ export function TxtSpan(props: Props) {
                 ...spaceT,
                 ...cursorT,
             }}
-            {...props}
+            {...rest}
         >
             {props.children}
         </span>

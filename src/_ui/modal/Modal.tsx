@@ -17,7 +17,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
 }
 
 export const Modal = (props: Props) => {
-    const { theme = 'light', modalSize = 560, open, onCancel, outSideCloseActive = true } = props
+    const { theme = 'light', modalSize = 560, open, onCancel, outSideCloseActive = true, zIndex, ...rest } = props
     const ref = useRef<HTMLDivElement>(null)
 
     const THEME_VARIANT = {
@@ -43,10 +43,10 @@ export const Modal = (props: Props) => {
 
     return (
         <>
-            {open && <BlurLayer zIndex={props?.zIndex ? props?.zIndex - 1 : 9998} />}
+            {open && <BlurLayer zIndex={zIndex ? zIndex - 1 : 9998} />}
 
             <P.Fixed
-                zIndex={props?.zIndex ?? 9999}
+                zIndex={zIndex ?? 9999}
                 width="100%"
                 height="100%"
                 position={{
@@ -69,7 +69,7 @@ export const Modal = (props: Props) => {
                     ref={ref}
                     scroll={{ type: 'auto' }}
                     css={{ [MQ[2]]: { height: '100%', borderRadius: '30px 30px 0 0' } }}
-                    {...props}
+                    {...rest}
                 >
                     {props.children}
 

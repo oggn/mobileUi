@@ -23,6 +23,7 @@ export function CalenderModal({
     date,
     onClick,
     theme = 'light',
+    zIndex,
     ...props
 }: Props) {
     const ref = useRef<HTMLDivElement>(null)
@@ -49,12 +50,12 @@ export function CalenderModal({
 
     return (
         <>
-            {open && <BlurLayer zIndex={props?.zIndex ? props?.zIndex - 1 : 9998} />}
+            {open && <BlurLayer zIndex={zIndex ? zIndex - 1 : 9999} />}
             <P.Fixed
                 height="100%"
                 align="center"
                 crossAlign="center"
-                zIndex={props?.zIndex ?? 9999}
+                zIndex={zIndex ?? 9999}
                 position={{
                     top: open ? 0 : ('120%' as any),
                     bottom: 0,

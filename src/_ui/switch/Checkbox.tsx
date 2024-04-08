@@ -38,7 +38,7 @@ interface CheckProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>
 export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: ForwardedRef<HTMLInputElement>) {
     const uid = generateUUID()
 
-    const { id, type = 'checkbox', disabled, checkSize = 16, label, themes } = props
+    const { id, type = 'checkbox', disabled, checkSize = 16, label, themes, ...rest } = props
 
     const { check: checkTheme, label: labelTheme } = themes ?? {}
 
@@ -86,7 +86,7 @@ export const Checkbox = forwardRef(function Checkbox(props: CheckProps, ref: For
                         },
                     }}
                     id={id ?? uid}
-                    {...props}
+                    {...rest}
                 />
             </label>
 

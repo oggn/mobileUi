@@ -11,7 +11,7 @@ interface Props extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
 }
 
 export const IconTab = forwardRef<HTMLButtonElement, Props>((props, ref: ForwardedRef<HTMLButtonElement>) => {
-    const { type, tabColor, hoverColor } = props
+    const { type, tabColor, hoverColor, ...rest } = props
 
     return (
         <button
@@ -39,7 +39,7 @@ export const IconTab = forwardRef<HTMLButtonElement, Props>((props, ref: Forward
                     }
                 }
             `}
-            {...props}
+            {...rest}
         >
             <div
                 className="icon-wrap"

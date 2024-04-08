@@ -44,8 +44,7 @@ interface Props extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'
 }
 
 const Textarea = forwardRef((props: Props, ref: ForwardedRef<HTMLTextAreaElement>) => {
-    const { value, disabled, autoRaise, scroll } = props
-    const { tab, rows = 1, textCountActive, error, sizes, themes } = props
+    const { tab, rows = 1, textCountActive, error, sizes, themes, value, disabled, autoRaise, scroll, ...rest } = props
 
     const [isFocused, setIsFocused] = useState(false)
     const handleFocus = useCallback(() => setIsFocused(true), [isFocused])
@@ -86,7 +85,10 @@ const Textarea = forwardRef((props: Props, ref: ForwardedRef<HTMLTextAreaElement
                         onBlur={handleBlur}
                         rows={rows}
                         css={{
-                            ...InputTheme({ ...(systems as any), sizes: { ...sizes, padding: sizes?.padding ?? 5 } }),
+                            ...InputTheme({
+                                ...(systems as any),
+                                sizes: { ...sizes, padding: sizes?.padding ?? 5 },
+                            }),
                             overflow: rows >= 2 ? 'auto' : 'visible',
                             '::-webkit-scrollbar': {
                                 display: scroll?.bar ?? rows >= 2 ? 'flex' : 'none' ?? 'none',
@@ -105,7 +107,7 @@ const Textarea = forwardRef((props: Props, ref: ForwardedRef<HTMLTextAreaElement
                                 backgroundColor: 'transparent',
                             },
                         }}
-                        {...props}
+                        {...rest}
                     />
                 </V.Row>
                 {!!tab && (
